@@ -1,0 +1,22 @@
+# Fichiers du jeu (ne jamais versionner : ~700 Mo, contenu propriétaire)
+Slime.Rancher.v1.4.4.ALL.DLC/
+Mods List/
+
+# Build .NET
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+
+# Sorties
+*.pdb
+dist/
+
+# Divers
+.vs/
+.idea/
+Thumbs.db
+
+# Reglages locaux Claude Code (specifiques a la machine)
+.claude/settings.local.json

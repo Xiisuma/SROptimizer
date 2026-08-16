@@ -1,0 +1,7 @@
+{
+  "id": "sroptimizer",
+  "name": "SROptimizer",
+  "author": "Xiisuma",
+  "version": "0.1.0",
+  "description": "Optimisation des performances de Slime Rancher : LOD comportemental, reduction des allocations, culling et diagnostics."
+}

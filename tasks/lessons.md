@@ -1,0 +1,10 @@
+# Leçons
+
+Format : [date] | ce qui a mal tourné | règle pour l'éviter
+
+- 2026-08-16 | `WebFetch` a renvoyé « HTTP 404 Not Found » sur `https://github.com/Xiisuma/SROptimizer` alors que le dépôt existe bien (confirmé par `api.github.com/repos/...`). La conclusion « le dépôt n'existe pas » a été énoncée à tort. | Ne jamais conclure à l'absence d'une ressource distante sur un seul outil. Vérifier avec l'API GitHub (`curl https://api.github.com/repos/<owner>/<repo>`) avant d'affirmer qu'un dépôt est introuvable.
+- 2026-08-16 | `Assembly-CSharp.dll` est patché par SRML ; `Assembly-CSharp_old.dll` est l'original. L'analyse a été faite sur l'original. | Avant d'écrire un patch Harmony, vérifier la signature de la méthode ciblée contre la version effectivement chargée par le jeu (la version patchée SRML), pas contre l'original.
+- 2026-08-16 | `sed -i 's#...\U...#'` a corrompu `SROptimizer.csproj` : dans le remplacement de `sed`, `\U` est une séquence d'échappement GNU qui met la suite en majuscules, ce qui a cassé les balises XML. | Ne pas utiliser `sed` pour modifier du XML ou tout texte contenant des antislashs. Utiliser l'outil `Edit`.
+- 2026-08-16 | `SRML.SRMod` est `internal` dans cette version de SRML : `SRMod.GetCurrentMod().Configs` ne compile pas depuis un mod. | Vérifier l'accessibilité réelle d'un type SRML dans le code décompilé avant de l'utiliser. Pour sauvegarder la config : `ConfigFile.GenerateConfig(typeof(MaConfig)).SaveToFile()`.
+- 2026-08-16 | `SRML.Console.Console` entre en collision avec `System.Console` et ses méthodes statiques de log sont marquées obsolètes. | Dans un mod SRML : `using SRConsole = SRML.Console.Console;` et journaliser via l'instance `ModEntryPoint.ConsoleInstance`, pas via les méthodes statiques.
+- 2026-08-16 | SRML lit `modinfo.json` **depuis les ressources embarquées du DLL** (`ProtoMod.TryParseFromDLL`), pas depuis un fichier à côté. | Toujours déclarer `<EmbeddedResource Include="modinfo.json" />` dans le `.csproj` d'un mod SRML.
