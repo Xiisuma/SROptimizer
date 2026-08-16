@@ -1,0 +1,436 @@
+﻿[17:23:04.523] === session demarree, SROptimizer 0.1.0 ===
+[17:23:04.524] config : profil=custom lod=True ab=True unlockFrameRate=False
+[17:23:04.680] etat : privee 825 Mo | travail 864 Mo | unity 437/559 Mo | geree 31 Mo | acteurs 122 | fps 144
+[17:23:04.865] frame longue : 1494 ms | acteurs 122 | lod on
+[17:23:06.684] etat : privee 825 Mo | travail 866 Mo | unity 437/563 Mo | geree 30 Mo | acteurs 122 | fps 120
+[17:23:08.688] etat : privee 825 Mo | travail 867 Mo | unity 439/563 Mo | geree 31 Mo | acteurs 122 | fps 120
+[17:23:10.690] etat : privee 826 Mo | travail 869 Mo | unity 438/563 Mo | geree 29 Mo | acteurs 122 | fps 120
+[17:23:12.700] etat : privee 826 Mo | travail 870 Mo | unity 439/563 Mo | geree 31 Mo | acteurs 122 | fps 110
+[17:23:14.700] etat : privee 826 Mo | travail 870 Mo | unity 437/563 Mo | geree 29 Mo | acteurs 122 | fps 106
+[17:23:16.702] etat : privee 826 Mo | travail 871 Mo | unity 438/563 Mo | geree 31 Mo | acteurs 122 | fps 114
+[17:23:18.710] etat : privee 831 Mo | travail 871 Mo | unity 438/567 Mo | geree 29 Mo | acteurs 122 | fps 118
+[17:23:20.702] bascule A/B : debut, lod -> off, acteurs 122
+[17:23:20.704] module lod : inactif apres 13891 appels evites sur 23384
+[17:23:20.704] bascule A/B : etat du module change
+[17:23:20.705] bascule A/B : terminee
+[17:23:20.711] etat : privee 831 Mo | travail 872 Mo | unity 438/567 Mo | geree 30 Mo | acteurs 122 | fps 120
+[17:23:22.713] etat : privee 831 Mo | travail 872 Mo | unity 439/567 Mo | geree 32 Mo | acteurs 119 | fps 120
+[17:23:24.719] etat : privee 831 Mo | travail 872 Mo | unity 438/567 Mo | geree 30 Mo | acteurs 119 | fps 120
+[17:23:26.721] etat : privee 831 Mo | travail 872 Mo | unity 439/567 Mo | geree 32 Mo | acteurs 119 | fps 118
+[17:23:28.710] bascule A/B : debut, lod -> on, acteurs 119
+[17:23:28.710] module lod : actif
+[17:23:28.710] bascule A/B : etat du module change
+[17:23:28.711] bascule A/B : terminee
+[17:23:28.726] etat : privee 832 Mo | travail 873 Mo | unity 438/567 Mo | geree 30 Mo | acteurs 119 | fps 120
+[17:23:30.731] etat : privee 832 Mo | travail 873 Mo | unity 439/567 Mo | geree 32 Mo | acteurs 119 | fps 75
+[17:23:32.738] etat : privee 1399 Mo | travail 1438 Mo | unity 768/866 Mo | geree 62 Mo | acteurs 119 | fps 116
+[17:23:36.476] etat : privee 1893 Mo | travail 1912 Mo | unity 1099/1281 Mo | geree 80 Mo | acteurs 5284 | fps 120
+[17:23:38.178] frame longue : 4433 ms | acteurs 154 | lod on
+[17:23:38.178] bascule A/B : debut, lod -> off, acteurs 154
+[17:23:38.178] module lod : inactif apres 393 appels evites sur 6696
+[17:23:38.178] bascule A/B : etat du module change
+[17:23:38.178] bascule A/B : terminee
+[17:23:38.228] frame longue : 336 ms | acteurs 136 | lod off
+[17:23:38.485] etat : privee 1939 Mo | travail 1965 Mo | unity 1023/1295 Mo | geree 88 Mo | acteurs 139 | fps 120
+[17:23:40.488] etat : privee 1939 Mo | travail 1973 Mo | unity 1023/1295 Mo | geree 89 Mo | acteurs 143 | fps 120
+[17:23:42.489] etat : privee 1941 Mo | travail 1975 Mo | unity 1023/1295 Mo | geree 90 Mo | acteurs 140 | fps 120
+[17:23:44.497] etat : privee 1940 Mo | travail 1975 Mo | unity 1023/1295 Mo | geree 91 Mo | acteurs 140 | fps 112
+[17:23:46.188] bascule A/B : debut, lod -> on, acteurs 134
+[17:23:46.188] module lod : actif
+[17:23:46.188] bascule A/B : etat du module change
+[17:23:46.188] bascule A/B : terminee
+[17:23:46.506] etat : privee 1930 Mo | travail 1965 Mo | unity 1023/1295 Mo | geree 92 Mo | acteurs 134 | fps 120
+[17:23:48.506] etat : privee 1930 Mo | travail 1965 Mo | unity 1023/1295 Mo | geree 94 Mo | acteurs 133 | fps 120
+[17:23:50.512] etat : privee 1929 Mo | travail 1963 Mo | unity 1022/1295 Mo | geree 77 Mo | acteurs 131 | fps 26
+[17:23:52.512] etat : privee 1929 Mo | travail 1963 Mo | unity 1022/1295 Mo | geree 78 Mo | acteurs 131 | fps 118
+[17:23:54.193] bascule A/B : debut, lod -> off, acteurs 131
+[17:23:54.193] module lod : inactif apres 8891 appels evites sur 14923
+[17:23:54.193] bascule A/B : etat du module change
+[17:23:54.193] bascule A/B : terminee
+[17:23:54.514] etat : privee 1932 Mo | travail 1966 Mo | unity 1023/1295 Mo | geree 79 Mo | acteurs 131 | fps 115
+[17:23:56.522] etat : privee 1942 Mo | travail 1973 Mo | unity 1024/1295 Mo | geree 80 Mo | acteurs 212 | fps 104
+[17:23:58.522] etat : privee 1946 Mo | travail 1977 Mo | unity 1024/1295 Mo | geree 79 Mo | acteurs 212 | fps 99
+[17:24:00.525] etat : privee 1945 Mo | travail 1977 Mo | unity 1024/1295 Mo | geree 78 Mo | acteurs 210 | fps 116
+[17:24:02.201] bascule A/B : debut, lod -> on, acteurs 210
+[17:24:02.201] module lod : actif
+[17:24:02.201] bascule A/B : etat du module change
+[17:24:02.201] bascule A/B : terminee
+[17:24:02.528] etat : privee 1945 Mo | travail 1977 Mo | unity 1024/1295 Mo | geree 77 Mo | acteurs 210 | fps 100
+[17:24:04.528] etat : privee 1945 Mo | travail 1977 Mo | unity 1024/1295 Mo | geree 77 Mo | acteurs 208 | fps 21
+[17:24:06.564] etat : privee 1945 Mo | travail 1977 Mo | unity 1025/1295 Mo | geree 77 Mo | acteurs 208 | fps 23
+[17:24:08.575] etat : privee 1945 Mo | travail 1977 Mo | unity 1025/1295 Mo | geree 77 Mo | acteurs 208 | fps 24
+[17:24:10.207] bascule A/B : debut, lod -> off, acteurs 208
+[17:24:10.207] module lod : inactif apres 15396 appels evites sur 23717
+[17:24:10.207] bascule A/B : etat du module change
+[17:24:10.208] bascule A/B : terminee
+[17:24:10.575] etat : privee 1945 Mo | travail 1978 Mo | unity 1025/1295 Mo | geree 94 Mo | acteurs 208 | fps 93
+[17:24:12.580] etat : privee 1945 Mo | travail 1978 Mo | unity 1025/1295 Mo | geree 94 Mo | acteurs 208 | fps 101
+[17:24:14.582] etat : privee 1955 Mo | travail 1981 Mo | unity 1025/1295 Mo | geree 93 Mo | acteurs 206 | fps 102
+[17:24:16.586] etat : privee 1956 Mo | travail 1982 Mo | unity 1025/1295 Mo | geree 92 Mo | acteurs 204 | fps 115
+[17:24:18.210] bascule A/B : debut, lod -> on, acteurs 204
+[17:24:18.210] module lod : actif
+[17:24:18.210] bascule A/B : etat du module change
+[17:24:18.211] bascule A/B : terminee
+[17:24:18.591] etat : privee 1960 Mo | travail 1991 Mo | unity 1025/1295 Mo | geree 91 Mo | acteurs 202 | fps 120
+[17:24:20.598] etat : privee 1960 Mo | travail 1991 Mo | unity 1025/1295 Mo | geree 90 Mo | acteurs 210 | fps 119
+[17:24:22.601] etat : privee 1959 Mo | travail 1991 Mo | unity 1025/1295 Mo | geree 90 Mo | acteurs 212 | fps 120
+[17:24:24.608] etat : privee 1959 Mo | travail 1991 Mo | unity 1025/1295 Mo | geree 90 Mo | acteurs 213 | fps 99
+[17:24:26.214] bascule A/B : debut, lod -> off, acteurs 213
+[17:24:26.214] module lod : inactif apres 15648 appels evites sur 24416
+[17:24:26.214] bascule A/B : etat du module change
+[17:24:26.215] bascule A/B : terminee
+[17:24:26.615] etat : privee 1959 Mo | travail 1991 Mo | unity 1025/1295 Mo | geree 90 Mo | acteurs 213 | fps 120
+[17:24:28.619] etat : privee 1960 Mo | travail 1991 Mo | unity 1025/1295 Mo | geree 89 Mo | acteurs 213 | fps 114
+[17:24:30.623] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 87 Mo | acteurs 211 | fps 104
+[17:24:32.627] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 84 Mo | acteurs 211 | fps 119
+[17:24:34.217] bascule A/B : debut, lod -> on, acteurs 211
+[17:24:34.217] module lod : actif
+[17:24:34.217] bascule A/B : etat du module change
+[17:24:34.217] bascule A/B : terminee
+[17:24:34.631] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 84 Mo | acteurs 208 | fps 90
+[17:24:36.639] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 84 Mo | acteurs 208 | fps 120
+[17:24:38.649] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 83 Mo | acteurs 208 | fps 120
+[17:24:40.654] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 83 Mo | acteurs 208 | fps 103
+[17:24:42.227] bascule A/B : debut, lod -> off, acteurs 208
+[17:24:42.227] module lod : inactif apres 15039 appels evites sur 24413
+[17:24:42.227] bascule A/B : etat du module change
+[17:24:42.227] bascule A/B : terminee
+[17:24:42.655] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 82 Mo | acteurs 208 | fps 106
+[17:24:44.657] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 82 Mo | acteurs 208 | fps 104
+[17:24:46.662] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 81 Mo | acteurs 208 | fps 112
+[17:24:48.671] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 80 Mo | acteurs 206 | fps 120
+[17:24:50.233] bascule A/B : debut, lod -> on, acteurs 206
+[17:24:50.233] module lod : actif
+[17:24:50.234] bascule A/B : etat du module change
+[17:24:50.234] bascule A/B : terminee
+[17:24:50.676] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 80 Mo | acteurs 207 | fps 119
+[17:24:52.679] etat : privee 1960 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 78 Mo | acteurs 207 | fps 101
+[17:24:54.684] etat : privee 1961 Mo | travail 1992 Mo | unity 1025/1295 Mo | geree 94 Mo | acteurs 207 | fps 92
+[17:24:56.687] etat : privee 1962 Mo | travail 1993 Mo | unity 1025/1295 Mo | geree 92 Mo | acteurs 207 | fps 109
+[17:24:58.239] bascule A/B : debut, lod -> off, acteurs 207
+[17:24:58.239] module lod : inactif apres 15388 appels evites sur 24000
+[17:24:58.239] bascule A/B : etat du module change
+[17:24:58.240] bascule A/B : terminee
+[17:24:58.695] etat : privee 1962 Mo | travail 1993 Mo | unity 1025/1295 Mo | geree 92 Mo | acteurs 207 | fps 105
+[17:25:00.698] etat : privee 1962 Mo | travail 1993 Mo | unity 1025/1295 Mo | geree 91 Mo | acteurs 207 | fps 118
+[17:25:02.706] etat : privee 1962 Mo | travail 1993 Mo | unity 1025/1295 Mo | geree 91 Mo | acteurs 205 | fps 102
+[17:25:04.713] etat : privee 1962 Mo | travail 1993 Mo | unity 1025/1295 Mo | geree 91 Mo | acteurs 205 | fps 118
+[17:25:06.245] bascule A/B : debut, lod -> on, acteurs 205
+[17:25:06.245] module lod : actif
+[17:25:06.246] bascule A/B : etat du module change
+[17:25:06.246] bascule A/B : terminee
+[17:25:06.720] etat : privee 1962 Mo | travail 1993 Mo | unity 1025/1295 Mo | geree 91 Mo | acteurs 203 | fps 120
+[17:25:08.723] etat : privee 1962 Mo | travail 1993 Mo | unity 1025/1295 Mo | geree 91 Mo | acteurs 203 | fps 120
+[17:25:10.723] etat : privee 1962 Mo | travail 1993 Mo | unity 1025/1295 Mo | geree 92 Mo | acteurs 203 | fps 118
+[17:25:12.732] etat : privee 1970 Mo | travail 2001 Mo | unity 1025/1296 Mo | geree 87 Mo | acteurs 203 | fps 87
+[17:25:14.249] bascule A/B : debut, lod -> off, acteurs 127
+[17:25:14.249] module lod : inactif apres 13630 appels evites sur 22527
+[17:25:14.249] bascule A/B : etat du module change
+[17:25:14.249] bascule A/B : terminee
+[17:25:14.736] etat : privee 1973 Mo | travail 2005 Mo | unity 1024/1296 Mo | geree 91 Mo | acteurs 127 | fps 118
+[17:25:16.748] etat : privee 1976 Mo | travail 2008 Mo | unity 1024/1297 Mo | geree 92 Mo | acteurs 127 | fps 120
+[17:25:18.749] etat : privee 1976 Mo | travail 2008 Mo | unity 1024/1297 Mo | geree 84 Mo | acteurs 127 | fps 109
+[17:25:20.752] etat : privee 1976 Mo | travail 2008 Mo | unity 1024/1297 Mo | geree 94 Mo | acteurs 127 | fps 120
+[17:25:22.254] bascule A/B : debut, lod -> on, acteurs 124
+[17:25:22.254] module lod : actif
+[17:25:22.254] bascule A/B : etat du module change
+[17:25:22.255] bascule A/B : terminee
+[17:25:22.752] etat : privee 1976 Mo | travail 2008 Mo | unity 1024/1297 Mo | geree 79 Mo | acteurs 124 | fps 103
+[17:25:24.754] etat : privee 1976 Mo | travail 2008 Mo | unity 1024/1297 Mo | geree 82 Mo | acteurs 124 | fps 113
+[17:25:26.757] etat : privee 1977 Mo | travail 2008 Mo | unity 1024/1297 Mo | geree 86 Mo | acteurs 124 | fps 111
+[17:25:28.764] etat : privee 1977 Mo | travail 2008 Mo | unity 1025/1297 Mo | geree 86 Mo | acteurs 124 | fps 96
+[17:25:30.257] bascule A/B : debut, lod -> off, acteurs 124
+[17:25:30.259] module lod : inactif apres 7594 appels evites sur 14080
+[17:25:30.259] bascule A/B : etat du module change
+[17:25:30.259] bascule A/B : terminee
+[17:25:30.765] etat : privee 1977 Mo | travail 2008 Mo | unity 1024/1297 Mo | geree 81 Mo | acteurs 124 | fps 120
+[17:25:32.767] etat : privee 1977 Mo | travail 2009 Mo | unity 1024/1297 Mo | geree 82 Mo | acteurs 124 | fps 120
+[17:25:34.767] etat : privee 1977 Mo | travail 2009 Mo | unity 1025/1297 Mo | geree 80 Mo | acteurs 124 | fps 107
+[17:25:36.772] etat : privee 1981 Mo | travail 2013 Mo | unity 1025/1297 Mo | geree 92 Mo | acteurs 124 | fps 99
+[17:25:38.265] bascule A/B : debut, lod -> on, acteurs 124
+[17:25:38.265] module lod : actif
+[17:25:38.265] bascule A/B : etat du module change
+[17:25:38.266] bascule A/B : terminee
+[17:25:38.778] etat : privee 1981 Mo | travail 2013 Mo | unity 1025/1297 Mo | geree 88 Mo | acteurs 124 | fps 120
+[17:25:40.782] etat : privee 1982 Mo | travail 2014 Mo | unity 1024/1298 Mo | geree 82 Mo | acteurs 124 | fps 107
+[17:25:42.789] etat : privee 1982 Mo | travail 2014 Mo | unity 1024/1298 Mo | geree 83 Mo | acteurs 124 | fps 101
+[17:25:44.791] etat : privee 1982 Mo | travail 2014 Mo | unity 1025/1298 Mo | geree 85 Mo | acteurs 124 | fps 115
+[17:25:46.270] bascule A/B : debut, lod -> off, acteurs 268
+[17:25:46.270] module lod : inactif apres 8792 appels evites sur 15838
+[17:25:46.271] bascule A/B : etat du module change
+[17:25:46.271] bascule A/B : terminee
+[17:25:46.803] etat : privee 1983 Mo | travail 2014 Mo | unity 1028/1298 Mo | geree 94 Mo | acteurs 268 | fps 88
+[17:25:48.807] etat : privee 1983 Mo | travail 2014 Mo | unity 1028/1298 Mo | geree 90 Mo | acteurs 268 | fps 82
+[17:25:50.808] etat : privee 1983 Mo | travail 2015 Mo | unity 1027/1298 Mo | geree 84 Mo | acteurs 200 | fps 83
+[17:25:52.814] etat : privee 1983 Mo | travail 2015 Mo | unity 1027/1298 Mo | geree 82 Mo | acteurs 200 | fps 98
+[17:25:54.277] bascule A/B : debut, lod -> on, acteurs 124
+[17:25:54.277] module lod : actif
+[17:25:54.277] bascule A/B : etat du module change
+[17:25:54.279] bascule A/B : terminee
+[17:25:54.816] etat : privee 1983 Mo | travail 2015 Mo | unity 1025/1298 Mo | geree 78 Mo | acteurs 124 | fps 101
+[17:25:56.822] etat : privee 1983 Mo | travail 2015 Mo | unity 1025/1298 Mo | geree 78 Mo | acteurs 121 | fps 62
+[17:25:58.828] etat : privee 1984 Mo | travail 2016 Mo | unity 1027/1298 Mo | geree 90 Mo | acteurs 200 | fps 92
+[17:26:00.830] etat : privee 1984 Mo | travail 2016 Mo | unity 1025/1298 Mo | geree 84 Mo | acteurs 120 | fps 105
+[17:26:02.283] bascule A/B : debut, lod -> off, acteurs 120
+[17:26:02.283] module lod : inactif apres 8382 appels evites sur 14713
+[17:26:02.284] bascule A/B : etat du module change
+[17:26:02.284] bascule A/B : terminee
+[17:26:02.836] etat : privee 1984 Mo | travail 2016 Mo | unity 1025/1298 Mo | geree 83 Mo | acteurs 120 | fps 113
+[17:26:04.839] etat : privee 1984 Mo | travail 2016 Mo | unity 1025/1298 Mo | geree 84 Mo | acteurs 120 | fps 98
+[17:26:06.839] etat : privee 1985 Mo | travail 2017 Mo | unity 1025/1298 Mo | geree 81 Mo | acteurs 120 | fps 88
+[17:26:08.845] etat : privee 1985 Mo | travail 2017 Mo | unity 1025/1298 Mo | geree 92 Mo | acteurs 120 | fps 96
+[17:26:10.292] bascule A/B : debut, lod -> on, acteurs 120
+[17:26:10.292] module lod : actif
+[17:26:10.293] bascule A/B : etat du module change
+[17:26:10.293] bascule A/B : terminee
+[17:26:10.849] etat : privee 1985 Mo | travail 2017 Mo | unity 1025/1298 Mo | geree 93 Mo | acteurs 120 | fps 109
+[17:26:12.853] etat : privee 1985 Mo | travail 2017 Mo | unity 1025/1298 Mo | geree 86 Mo | acteurs 120 | fps 91
+[17:26:14.860] etat : privee 1985 Mo | travail 2017 Mo | unity 1025/1298 Mo | geree 82 Mo | acteurs 120 | fps 93
+[17:26:16.866] etat : privee 1985 Mo | travail 2017 Mo | unity 1025/1298 Mo | geree 81 Mo | acteurs 120 | fps 76
+[17:26:18.295] bascule A/B : debut, lod -> off, acteurs 120
+[17:26:18.295] module lod : inactif apres 7178 appels evites sur 13760
+[17:26:18.297] bascule A/B : etat du module change
+[17:26:18.297] bascule A/B : terminee
+[17:26:18.876] etat : privee 1985 Mo | travail 2018 Mo | unity 1025/1298 Mo | geree 78 Mo | acteurs 120 | fps 62
+[17:26:20.885] etat : privee 1986 Mo | travail 2018 Mo | unity 1025/1298 Mo | geree 81 Mo | acteurs 120 | fps 92
+[17:26:22.895] etat : privee 1986 Mo | travail 2018 Mo | unity 1025/1298 Mo | geree 78 Mo | acteurs 120 | fps 104
+[17:26:24.902] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 91 Mo | acteurs 120 | fps 75
+[17:26:26.299] bascule A/B : debut, lod -> on, acteurs 120
+[17:26:26.299] module lod : actif
+[17:26:26.299] bascule A/B : etat du module change
+[17:26:26.300] bascule A/B : terminee
+[17:26:26.910] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 89 Mo | acteurs 120 | fps 107
+[17:26:28.917] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 86 Mo | acteurs 120 | fps 78
+[17:26:30.929] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 87 Mo | acteurs 120 | fps 85
+[17:26:32.937] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 85 Mo | acteurs 120 | fps 71
+[17:26:34.303] bascule A/B : debut, lod -> off, acteurs 120
+[17:26:34.303] module lod : inactif apres 7002 appels evites sur 13760
+[17:26:34.304] bascule A/B : etat du module change
+[17:26:34.304] bascule A/B : terminee
+[17:26:34.938] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 82 Mo | acteurs 120 | fps 105
+[17:26:36.974] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 78 Mo | acteurs 120 | fps 21
+[17:26:38.983] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 93 Mo | acteurs 120 | fps 84
+[17:26:40.986] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 86 Mo | acteurs 120 | fps 94
+[17:26:42.305] bascule A/B : debut, lod -> on, acteurs 120
+[17:26:42.305] module lod : actif
+[17:26:42.306] bascule A/B : etat du module change
+[17:26:42.306] bascule A/B : terminee
+[17:26:42.990] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 81 Mo | acteurs 120 | fps 103
+[17:26:45.000] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 93 Mo | acteurs 120 | fps 100
+[17:26:47.000] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 86 Mo | acteurs 120 | fps 90
+[17:26:49.008] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 80 Mo | acteurs 120 | fps 97
+[17:26:50.314] bascule A/B : debut, lod -> off, acteurs 120
+[17:26:50.314] module lod : inactif apres 7527 appels evites sur 13760
+[17:26:50.314] bascule A/B : etat du module change
+[17:26:50.314] bascule A/B : terminee
+[17:26:51.015] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 90 Mo | acteurs 120 | fps 108
+[17:26:53.016] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 81 Mo | acteurs 120 | fps 95
+[17:26:55.027] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 94 Mo | acteurs 120 | fps 77
+[17:26:57.029] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 94 Mo | acteurs 120 | fps 84
+[17:26:58.316] bascule A/B : debut, lod -> on, acteurs 120
+[17:26:58.316] module lod : actif
+[17:26:58.316] bascule A/B : etat du module change
+[17:26:58.316] bascule A/B : terminee
+[17:26:59.035] etat : privee 1987 Mo | travail 2019 Mo | unity 1025/1298 Mo | geree 92 Mo | acteurs 120 | fps 104
+[17:27:01.041] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 92 Mo | acteurs 120 | fps 90
+[17:27:03.083] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 78 Mo | acteurs 139 | fps 21
+[17:27:05.087] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 80 Mo | acteurs 145 | fps 79
+[17:27:06.334] bascule A/B : debut, lod -> off, acteurs 145
+[17:27:06.334] module lod : inactif apres 10815 appels evites sur 15022
+[17:27:06.335] bascule A/B : etat du module change
+[17:27:06.335] bascule A/B : terminee
+[17:27:07.093] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 79 Mo | acteurs 145 | fps 105
+[17:27:09.094] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 80 Mo | acteurs 145 | fps 97
+[17:27:11.145] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 78 Mo | acteurs 145 | fps 15
+[17:27:13.154] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 91 Mo | acteurs 145 | fps 97
+[17:27:14.338] bascule A/B : debut, lod -> on, acteurs 145
+[17:27:14.338] module lod : actif
+[17:27:14.338] bascule A/B : etat du module change
+[17:27:14.339] bascule A/B : terminee
+[17:27:15.164] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 89 Mo | acteurs 145 | fps 84
+[17:27:17.168] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 87 Mo | acteurs 145 | fps 92
+[17:27:19.174] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 84 Mo | acteurs 145 | fps 100
+[17:27:21.211] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 78 Mo | acteurs 145 | fps 22
+[17:27:22.345] bascule A/B : debut, lod -> off, acteurs 145
+[17:27:22.345] module lod : inactif apres 11103 appels evites sur 16960
+[17:27:22.345] bascule A/B : etat du module change
+[17:27:22.345] bascule A/B : terminee
+[17:27:23.223] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 79 Mo | acteurs 145 | fps 51
+[17:27:25.232] etat : privee 1988 Mo | travail 2020 Mo | unity 1024/1298 Mo | geree 81 Mo | acteurs 120 | fps 108
+[17:27:27.238] etat : privee 1988 Mo | travail 2020 Mo | unity 1024/1298 Mo | geree 84 Mo | acteurs 120 | fps 104
+[17:27:29.246] etat : privee 1988 Mo | travail 2020 Mo | unity 1024/1298 Mo | geree 85 Mo | acteurs 120 | fps 86
+[17:27:30.347] bascule A/B : debut, lod -> on, acteurs 120
+[17:27:30.347] module lod : actif
+[17:27:30.347] bascule A/B : etat du module change
+[17:27:30.348] bascule A/B : terminee
+[17:27:31.249] etat : privee 1988 Mo | travail 2020 Mo | unity 1024/1298 Mo | geree 82 Mo | acteurs 120 | fps 113
+[17:27:33.252] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 80 Mo | acteurs 145 | fps 66
+[17:27:35.253] etat : privee 1988 Mo | travail 2020 Mo | unity 1024/1298 Mo | geree 84 Mo | acteurs 120 | fps 111
+[17:27:37.259] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 84 Mo | acteurs 145 | fps 74
+[17:27:38.348] bascule A/B : debut, lod -> off, acteurs 145
+[17:27:38.348] module lod : inactif apres 11416 appels evites sur 15570
+[17:27:38.348] bascule A/B : etat du module change
+[17:27:38.349] bascule A/B : terminee
+[17:27:39.272] etat : privee 1988 Mo | travail 2020 Mo | unity 1025/1298 Mo | geree 80 Mo | acteurs 145 | fps 68
+[17:27:41.274] etat : privee 1988 Mo | travail 2020 Mo | unity 1024/1298 Mo | geree 89 Mo | acteurs 120 | fps 90
+[17:27:43.280] etat : privee 1988 Mo | travail 2020 Mo | unity 1024/1298 Mo | geree 81 Mo | acteurs 120 | fps 77
+[17:27:45.281] etat : privee 1988 Mo | travail 2021 Mo | unity 1024/1298 Mo | geree 79 Mo | acteurs 120 | fps 85
+[17:27:46.351] bascule A/B : debut, lod -> on, acteurs 120
+[17:27:46.351] module lod : actif
+[17:27:46.352] bascule A/B : etat du module change
+[17:27:46.352] bascule A/B : terminee
+[17:27:47.283] etat : privee 1988 Mo | travail 2021 Mo | unity 1025/1298 Mo | geree 93 Mo | acteurs 123 | fps 88
+[17:27:49.288] etat : privee 1988 Mo | travail 2021 Mo | unity 1024/1298 Mo | geree 79 Mo | acteurs 123 | fps 81
+[17:27:51.297] etat : privee 1988 Mo | travail 2021 Mo | unity 1026/1298 Mo | geree 80 Mo | acteurs 222 | fps 113
+[17:27:53.301] etat : privee 1988 Mo | travail 2021 Mo | unity 1026/1298 Mo | geree 94 Mo | acteurs 213 | fps 103
+[17:27:54.360] bascule A/B : debut, lod -> off, acteurs 185
+[17:27:54.360] module lod : inactif apres 14510 appels evites sur 19925
+[17:27:54.360] bascule A/B : etat du module change
+[17:27:54.361] bascule A/B : terminee
+[17:27:55.303] etat : privee 1995 Mo | travail 2027 Mo | unity 1025/1298 Mo | geree 85 Mo | acteurs 185 | fps 106
+[17:27:57.305] etat : privee 1990 Mo | travail 2022 Mo | unity 1026/1298 Mo | geree 78 Mo | acteurs 207 | fps 75
+[17:27:59.315] etat : privee 1990 Mo | travail 2022 Mo | unity 1024/1298 Mo | geree 78 Mo | acteurs 117 | fps 79
+[17:28:01.317] etat : privee 1990 Mo | travail 2022 Mo | unity 1024/1298 Mo | geree 87 Mo | acteurs 117 | fps 97
+[17:28:02.364] bascule A/B : debut, lod -> on, acteurs 117
+[17:28:02.364] module lod : actif
+[17:28:02.365] bascule A/B : etat du module change
+[17:28:02.365] bascule A/B : terminee
+[17:28:03.321] etat : privee 1990 Mo | travail 2022 Mo | unity 1025/1298 Mo | geree 78 Mo | acteurs 184 | fps 74
+[17:28:05.326] etat : privee 1990 Mo | travail 2022 Mo | unity 1026/1298 Mo | geree 94 Mo | acteurs 200 | fps 104
+[17:28:07.333] etat : privee 1990 Mo | travail 2022 Mo | unity 1028/1298 Mo | geree 92 Mo | acteurs 291 | fps 110
+[17:28:09.341] etat : privee 1990 Mo | travail 2022 Mo | unity 1024/1298 Mo | geree 82 Mo | acteurs 100 | fps 102
+[17:28:10.371] bascule A/B : debut, lod -> off, acteurs 100
+[17:28:10.371] module lod : inactif apres 16096 appels evites sur 22347
+[17:28:10.371] bascule A/B : etat du module change
+[17:28:10.371] bascule A/B : terminee
+[17:28:11.344] etat : privee 1990 Mo | travail 2023 Mo | unity 1025/1298 Mo | geree 88 Mo | acteurs 100 | fps 83
+[17:28:13.346] etat : privee 1991 Mo | travail 2023 Mo | unity 1024/1298 Mo | geree 88 Mo | acteurs 99 | fps 83
+[17:28:15.353] etat : privee 1991 Mo | travail 2024 Mo | unity 1024/1298 Mo | geree 86 Mo | acteurs 92 | fps 114
+[17:28:17.358] etat : privee 1991 Mo | travail 2024 Mo | unity 1025/1298 Mo | geree 88 Mo | acteurs 94 | fps 117
+[17:28:18.373] bascule A/B : debut, lod -> on, acteurs 177
+[17:28:18.373] module lod : actif
+[17:28:18.373] bascule A/B : etat du module change
+[17:28:18.374] bascule A/B : terminee
+[17:28:19.366] etat : privee 1991 Mo | travail 2024 Mo | unity 1026/1298 Mo | geree 92 Mo | acteurs 177 | fps 101
+[17:28:21.372] etat : privee 1991 Mo | travail 2024 Mo | unity 1026/1298 Mo | geree 93 Mo | acteurs 177 | fps 78
+[17:28:23.375] etat : privee 1991 Mo | travail 2024 Mo | unity 1025/1298 Mo | geree 89 Mo | acteurs 96 | fps 88
+[17:28:25.389] etat : privee 1991 Mo | travail 2024 Mo | unity 1025/1298 Mo | geree 91 Mo | acteurs 106 | fps 81
+[17:28:26.384] bascule A/B : debut, lod -> off, acteurs 118
+[17:28:26.384] module lod : inactif apres 9356 appels evites sur 14822
+[17:28:26.385] bascule A/B : etat du module change
+[17:28:26.385] bascule A/B : terminee
+[17:28:27.395] etat : privee 1991 Mo | travail 2024 Mo | unity 1025/1298 Mo | geree 90 Mo | acteurs 118 | fps 76
+[17:28:29.402] etat : privee 1992 Mo | travail 2025 Mo | unity 1026/1298 Mo | geree 90 Mo | acteurs 118 | fps 78
+[17:28:31.409] etat : privee 1992 Mo | travail 2025 Mo | unity 1026/1298 Mo | geree 90 Mo | acteurs 118 | fps 100
+[17:28:33.410] etat : privee 1992 Mo | travail 2025 Mo | unity 1027/1298 Mo | geree 87 Mo | acteurs 193 | fps 69
+[17:28:34.389] bascule A/B : debut, lod -> on, acteurs 114
+[17:28:34.389] module lod : actif
+[17:28:34.390] bascule A/B : etat du module change
+[17:28:34.390] bascule A/B : terminee
+[17:28:35.414] etat : privee 1992 Mo | travail 2025 Mo | unity 1025/1298 Mo | geree 81 Mo | acteurs 114 | fps 73
+[17:28:37.419] etat : privee 1996 Mo | travail 2029 Mo | unity 1026/1298 Mo | geree 94 Mo | acteurs 114 | fps 91
+[17:28:39.422] etat : privee 1996 Mo | travail 2029 Mo | unity 1025/1298 Mo | geree 79 Mo | acteurs 114 | fps 111
+[17:28:41.432] etat : privee 1996 Mo | travail 2029 Mo | unity 1025/1298 Mo | geree 81 Mo | acteurs 114 | fps 100
+[17:28:42.391] bascule A/B : debut, lod -> off, acteurs 114
+[17:28:42.391] module lod : inactif apres 8505 appels evites sur 12800
+[17:28:42.391] bascule A/B : etat du module change
+[17:28:42.391] bascule A/B : terminee
+[17:28:43.432] etat : privee 1996 Mo | travail 2029 Mo | unity 1025/1298 Mo | geree 83 Mo | acteurs 114 | fps 102
+[17:28:45.441] etat : privee 1996 Mo | travail 2029 Mo | unity 1025/1298 Mo | geree 82 Mo | acteurs 112 | fps 82
+[17:28:47.451] etat : privee 1996 Mo | travail 2029 Mo | unity 1025/1298 Mo | geree 81 Mo | acteurs 112 | fps 98
+[17:28:49.463] etat : privee 2000 Mo | travail 2033 Mo | unity 1025/1298 Mo | geree 82 Mo | acteurs 112 | fps 84
+[17:28:50.392] bascule A/B : debut, lod -> on, acteurs 112
+[17:28:50.392] module lod : actif
+[17:28:50.392] bascule A/B : etat du module change
+[17:28:50.393] bascule A/B : terminee
+[17:28:51.506] etat : privee 2000 Mo | travail 2033 Mo | unity 1025/1298 Mo | geree 79 Mo | acteurs 112 | fps 20
+[17:28:53.509] etat : privee 2000 Mo | travail 2033 Mo | unity 1025/1298 Mo | geree 82 Mo | acteurs 112 | fps 81
+[17:28:55.514] etat : privee 2000 Mo | travail 2033 Mo | unity 1025/1298 Mo | geree 92 Mo | acteurs 112 | fps 79
+[17:28:57.525] etat : privee 2000 Mo | travail 2033 Mo | unity 1025/1298 Mo | geree 85 Mo | acteurs 134 | fps 81
+[17:28:58.394] bascule A/B : debut, lod -> off, acteurs 134
+[17:28:58.394] module lod : inactif apres 7593 appels evites sur 13261
+[17:28:58.395] bascule A/B : etat du module change
+[17:28:58.395] bascule A/B : terminee
+[17:28:59.526] etat : privee 2000 Mo | travail 2033 Mo | unity 1026/1298 Mo | geree 93 Mo | acteurs 122 | fps 81
+[17:29:01.534] etat : privee 2000 Mo | travail 2033 Mo | unity 1025/1298 Mo | geree 85 Mo | acteurs 116 | fps 94
+[17:29:03.581] etat : privee 2001 Mo | travail 2034 Mo | unity 1026/1298 Mo | geree 79 Mo | acteurs 209 | fps 17
+[17:29:05.589] etat : privee 2002 Mo | travail 2035 Mo | unity 1026/1298 Mo | geree 86 Mo | acteurs 209 | fps 120
+[17:29:06.406] bascule A/B : debut, lod -> on, acteurs 212
+[17:29:06.406] module lod : actif
+[17:29:06.406] bascule A/B : etat du module change
+[17:29:06.407] bascule A/B : terminee
+[17:29:07.591] etat : privee 2002 Mo | travail 2035 Mo | unity 1027/1298 Mo | geree 90 Mo | acteurs 212 | fps 85
+[17:29:09.602] etat : privee 2002 Mo | travail 2035 Mo | unity 1026/1298 Mo | geree 79 Mo | acteurs 208 | fps 101
+[17:29:11.612] etat : privee 2002 Mo | travail 2035 Mo | unity 1027/1298 Mo | geree 82 Mo | acteurs 220 | fps 105
+[17:29:13.617] etat : privee 2007 Mo | travail 2041 Mo | unity 1027/1298 Mo | geree 85 Mo | acteurs 217 | fps 93
+[17:29:14.414] bascule A/B : debut, lod -> off, acteurs 217
+[17:29:14.414] module lod : inactif apres 12284 appels evites sur 24097
+[17:29:14.415] bascule A/B : etat du module change
+[17:29:14.415] bascule A/B : terminee
+[17:29:15.626] etat : privee 1994 Mo | travail 2028 Mo | unity 1027/1298 Mo | geree 87 Mo | acteurs 217 | fps 110
+[17:29:17.631] etat : privee 1994 Mo | travail 2028 Mo | unity 1027/1298 Mo | geree 90 Mo | acteurs 215 | fps 113
+[17:29:19.640] etat : privee 1994 Mo | travail 2028 Mo | unity 1027/1298 Mo | geree 93 Mo | acteurs 213 | fps 116
+[17:29:21.645] etat : privee 1994 Mo | travail 2028 Mo | unity 1027/1298 Mo | geree 87 Mo | acteurs 217 | fps 101
+[17:29:22.421] bascule A/B : debut, lod -> on, acteurs 217
+[17:29:22.422] module lod : actif
+[17:29:22.422] bascule A/B : etat du module change
+[17:29:22.423] bascule A/B : terminee
+[17:29:23.645] etat : privee 1994 Mo | travail 2028 Mo | unity 1027/1298 Mo | geree 93 Mo | acteurs 217 | fps 94
+[17:29:25.647] etat : privee 1996 Mo | travail 2029 Mo | unity 1027/1298 Mo | geree 93 Mo | acteurs 217 | fps 88
+[17:29:27.648] etat : privee 1996 Mo | travail 2029 Mo | unity 1027/1298 Mo | geree 93 Mo | acteurs 217 | fps 87
+[17:29:29.656] etat : privee 1996 Mo | travail 2029 Mo | unity 1027/1298 Mo | geree 79 Mo | acteurs 217 | fps 20
+[17:29:30.427] bascule A/B : debut, lod -> off, acteurs 217
+[17:29:30.428] module lod : inactif apres 11552 appels evites sur 24320
+[17:29:30.428] bascule A/B : etat du module change
+[17:29:30.428] bascule A/B : terminee
+[17:29:31.658] etat : privee 1996 Mo | travail 2029 Mo | unity 1027/1298 Mo | geree 82 Mo | acteurs 217 | fps 105
+[17:29:33.663] etat : privee 1996 Mo | travail 2029 Mo | unity 1027/1298 Mo | geree 87 Mo | acteurs 180 | fps 120
+[17:29:35.668] etat : privee 1996 Mo | travail 2029 Mo | unity 1026/1298 Mo | geree 91 Mo | acteurs 131 | fps 120
+[17:29:37.674] etat : privee 1996 Mo | travail 2029 Mo | unity 1026/1298 Mo | geree 93 Mo | acteurs 163 | fps 119
+[17:29:38.428] bascule A/B : debut, lod -> on, acteurs 160
+[17:29:38.428] module lod : actif
+[17:29:38.429] bascule A/B : etat du module change
+[17:29:38.429] bascule A/B : terminee
+[17:29:39.690] etat : privee 1996 Mo | travail 2029 Mo | unity 1025/1298 Mo | geree 79 Mo | acteurs 155 | fps 23
+[17:29:41.694] etat : privee 2004 Mo | travail 2037 Mo | unity 1025/1298 Mo | geree 80 Mo | acteurs 155 | fps 120
+[17:29:43.696] etat : privee 2004 Mo | travail 2037 Mo | unity 1030/1298 Mo | geree 79 Mo | acteurs 168 | fps 90
+[17:29:45.704] etat : privee 2004 Mo | travail 2038 Mo | unity 1026/1298 Mo | geree 94 Mo | acteurs 170 | fps 120
+[17:29:46.432] bascule A/B : debut, lod -> off, acteurs 168
+[17:29:46.432] module lod : inactif apres 9925 appels evites sur 18505
+[17:29:46.433] bascule A/B : etat du module change
+[17:29:46.433] bascule A/B : terminee
+[17:29:47.710] etat : privee 2004 Mo | travail 2038 Mo | unity 1025/1298 Mo | geree 79 Mo | acteurs 149 | fps 119
+[17:29:49.714] etat : privee 2004 Mo | travail 2038 Mo | unity 1026/1298 Mo | geree 80 Mo | acteurs 175 | fps 120
+[17:29:51.719] etat : privee 2004 Mo | travail 2038 Mo | unity 1026/1298 Mo | geree 81 Mo | acteurs 175 | fps 120
+[17:29:53.720] etat : privee 2004 Mo | travail 2038 Mo | unity 1026/1298 Mo | geree 83 Mo | acteurs 172 | fps 120
+[17:29:54.437] bascule A/B : debut, lod -> on, acteurs 172
+[17:29:54.437] module lod : actif
+[17:29:54.438] bascule A/B : etat du module change
+[17:29:54.439] bascule A/B : terminee
+[17:29:55.724] etat : privee 2004 Mo | travail 2038 Mo | unity 1025/1298 Mo | geree 84 Mo | acteurs 101 | fps 110
+[17:29:57.724] etat : privee 2004 Mo | travail 2038 Mo | unity 1024/1298 Mo | geree 84 Mo | acteurs 66 | fps 120
+[17:29:59.728] etat : privee 2004 Mo | travail 2038 Mo | unity 1023/1298 Mo | geree 79 Mo | acteurs 26 | fps 120
+[17:30:01.736] etat : privee 2021 Mo | travail 2038 Mo | unity 1023/1298 Mo | geree 81 Mo | acteurs 23 | fps 113
+[17:30:02.439] bascule A/B : debut, lod -> off, acteurs 23
+[17:30:02.439] module lod : inactif apres 5981 appels evites sur 7684
+[17:30:02.440] bascule A/B : etat du module change
+[17:30:02.440] bascule A/B : terminee
+[17:30:03.743] etat : privee 2021 Mo | travail 2038 Mo | unity 1024/1298 Mo | geree 92 Mo | acteurs 25 | fps 111
+[17:30:05.750] etat : privee 2021 Mo | travail 2045 Mo | unity 1024/1298 Mo | geree 102 Mo | acteurs 2 | fps 112
+[17:30:07.754] etat : privee 2021 Mo | travail -2045 Mo | unity 1023/1298 Mo | geree 81 Mo | acteurs 2 | fps 120
+[17:30:09.756] etat : privee 2021 Mo | travail -2045 Mo | unity 1023/1298 Mo | geree 85 Mo | acteurs 5 | fps 112
+[17:30:10.446] bascule A/B : debut, lod -> on, acteurs 5
+[17:30:10.446] module lod : actif
+[17:30:10.447] bascule A/B : etat du module change
+[17:30:10.447] bascule A/B : terminee
+[17:30:11.762] etat : privee 2013 Mo | travail 2042 Mo | unity 1024/1298 Mo | geree 92 Mo | acteurs 5 | fps 115
+[17:30:13.766] etat : privee 2014 Mo | travail 2043 Mo | unity 1024/1298 Mo | geree 98 Mo | acteurs 5 | fps 117
+[17:30:15.768] etat : privee 2014 Mo | travail 2043 Mo | unity 1025/1298 Mo | geree 104 Mo | acteurs 5 | fps 116
+[17:30:17.776] etat : privee 2014 Mo | travail 2043 Mo | unity 1023/1298 Mo | geree 83 Mo | acteurs 5 | fps 120
+[17:30:18.870] bascule A/B : debut, lod -> off, acteurs 148
+[17:30:18.870] module lod : inactif apres 0 appels evites sur 510
+[17:30:18.870] bascule A/B : etat du module change
+[17:30:18.870] bascule A/B : terminee
+[17:30:18.900] frame longue : 894 ms | acteurs 116 | lod off
+[17:30:19.782] etat : privee 1776 Mo | travail 1788 Mo | unity 811/1252 Mo | geree 106 Mo | acteurs 116 | fps 116
+[17:30:19.951] === fin normale : fermeture du jeu ===

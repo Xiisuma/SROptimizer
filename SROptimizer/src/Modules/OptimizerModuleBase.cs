@@ -4,17 +4,25 @@ using HarmonyLib;
 namespace SROptimizer.Modules
 {
     /// <summary>
-    /// Implementation commune : gestion de l'etat actif/inactif et cycle de vie des patchs.
+    /// Implementation commune : cycle de vie des modules et pose des patchs.
     ///
-    /// Chaque module possede sa PROPRE instance Harmony, nommee "net.xiisuma.sroptimizer.&lt;id&gt;".
-    /// C'est ce qui permet de desactiver un module a chaud sans toucher aux patchs des autres :
-    /// Harmony.UnpatchAll(id) ne retire que les patchs portant cet identifiant.
+    /// <para><b>Les patchs Harmony sont poses une seule fois et ne sont jamais retires tant que
+    /// le jeu tourne.</b> Une premiere version desinstallait les patchs a la desactivation :
+    /// le jeu plantait en natif, sans aucune exception managee, exactement a l'instant du
+    /// premier retrait. Retirer un patch pendant que la methode s'execute a 50 Hz sur des
+    /// centaines d'acteurs revient a reecrire cette methode sous les pieds de l'appelant, ici
+    /// <c>ActorRegistry.FixedUpdate</c> qui est en train d'iterer dessus.</para>
+    ///
+    /// <para>Consequence pour les modules : un patch pose doit consulter l'etat du module a
+    /// chaque appel et se comporter comme le jeu d'origine quand le module est inactif. C'est
+    /// ce que verifie <see cref="IsEnabled"/>. Le cout residuel est un test de booleen.</para>
     /// </summary>
     public abstract class OptimizerModuleBase : IOptimizerModule
     {
         public const string HarmonyIdPrefix = "net.xiisuma.sroptimizer.";
 
         private Harmony _harmony;
+        private bool _patchesInstalled;
 
         public abstract string Id { get; }
         public abstract string Description { get; }
@@ -27,31 +35,38 @@ namespace SROptimizer.Modules
         public void Enable(Harmony _)
         {
             if (IsEnabled) return;
+
             try
             {
-                OnEnable(ModuleHarmony);
+                if (!_patchesInstalled)
+                {
+                    InstallPatches(ModuleHarmony);
+                    _patchesInstalled = true;
+                }
+
+                OnActivated();
                 IsEnabled = true;
                 SROptimizerMod.Log.Log($"Module '{Id}' active.");
             }
             catch (Exception e)
             {
                 SROptimizerMod.Log.LogError($"Module '{Id}' n'a pas pu etre active : {e}");
-                ForceDisable();
+                SafeDeactivate();
             }
         }
 
         public void Disable(Harmony _)
         {
             if (!IsEnabled) return;
-            ForceDisable();
+            SafeDeactivate();
             SROptimizerMod.Log.Log($"Module '{Id}' desactive.");
         }
 
-        private void ForceDisable()
+        private void SafeDeactivate()
         {
             try
             {
-                OnDisable(ModuleHarmony);
+                OnDeactivated();
             }
             catch (Exception e)
             {
@@ -59,26 +74,29 @@ namespace SROptimizer.Modules
             }
             finally
             {
-                try
-                {
-                    ModuleHarmony.UnpatchAll(ModuleHarmony.Id);
-                }
-                catch (Exception e)
-                {
-                    SROptimizerMod.Log.LogError($"Echec du retrait des patchs de '{Id}' : {e}");
-                }
+                // Les patchs restent en place volontairement : voir la remarque de classe.
                 IsEnabled = false;
             }
         }
 
-        /// <summary>Pose les patchs du module. Appele une seule fois par activation.</summary>
-        protected abstract void OnEnable(Harmony harmony);
+        /// <summary>
+        /// Pose les patchs Harmony du module. Appele une seule fois par session de jeu, a la
+        /// premiere activation. Les patchs doivent consulter l'etat du module a chaque appel.
+        /// </summary>
+        protected abstract void InstallPatches(Harmony harmony);
+
+        /// <summary>Bascule le module a l'etat actif. Doit rester bon marche : appele a chaque bascule.</summary>
+        protected virtual void OnActivated()
+        {
+        }
 
         /// <summary>
-        /// Restaure l'etat non-Harmony du module (valeurs globales modifiees, caches, objets crees).
-        /// Le retrait des patchs Harmony est fait automatiquement apres cet appel.
+        /// Bascule le module a l'etat inactif et restaure ce qui doit l'etre (valeurs globales
+        /// modifiees, caches). Les patchs, eux, restent poses.
         /// </summary>
-        protected abstract void OnDisable(Harmony harmony);
+        protected virtual void OnDeactivated()
+        {
+        }
 
         public virtual string GetStatusLine() => IsEnabled ? "actif" : "inactif";
     }

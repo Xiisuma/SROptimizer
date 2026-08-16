@@ -82,6 +82,21 @@ namespace SROptimizer
             SROptimizerConfig.Modules.physicsTuning = Includes(p, "physics");
         }
 
+        /// <summary>Fixe l'interrupteur de configuration d'un module.</summary>
+        public static void SetSwitch(string moduleId, bool enabled)
+        {
+            switch (moduleId)
+            {
+                case "lod": SROptimizerConfig.Modules.behaviourLod = enabled; break;
+                case "cache": SROptimizerConfig.Modules.consumableCache = enabled; break;
+                case "alloc": SROptimizerConfig.Modules.allocationTrimming = enabled; break;
+                case "registry": SROptimizerConfig.Modules.actorRegistryBudget = enabled; break;
+                case "autosave": SROptimizerConfig.Modules.smoothAutosave = enabled; break;
+                case "culling": SROptimizerConfig.Modules.renderCulling = enabled; break;
+                case "physics": SROptimizerConfig.Modules.physicsTuning = enabled; break;
+            }
+        }
+
         /// <summary>Etat souhaite d'un module d'apres les interrupteurs de configuration.</summary>
         public static bool IsEnabledInConfig(string moduleId)
         {

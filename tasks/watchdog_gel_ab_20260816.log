@@ -1,0 +1,19 @@
+﻿[17:18:01.787] === session demarree, SROptimizer 0.1.0 ===
+[17:18:01.788] config : profil=custom lod=True ab=True unlockFrameRate=False
+[17:18:01.969] etat : privee 836 Mo | travail 859 Mo | unity 438/558 Mo | geree 31 Mo | acteurs 123 | fps 155
+[17:18:03.969] etat : privee 838 Mo | travail 867 Mo | unity 438/562 Mo | geree 29 Mo | acteurs 123 | fps 120
+[17:18:06.257] etat : privee 1391 Mo | travail 1425 Mo | unity 761/857 Mo | geree 57 Mo | acteurs 123 | fps 120
+[17:18:14.075] etat : privee 1895 Mo | travail 1927 Mo | unity 1049/1292 Mo | geree 94 Mo | acteurs 148 | fps 120
+[17:18:16.082] etat : privee 1958 Mo | travail 1988 Mo | unity 1028/1297 Mo | geree 97 Mo | acteurs 131 | fps 120
+[17:18:18.097] etat : privee 1959 Mo | travail 1992 Mo | unity 1027/1297 Mo | geree 90 Mo | acteurs 131 | fps 21
+[17:18:20.105] etat : privee 1960 Mo | travail 1993 Mo | unity 1027/1297 Mo | geree 105 Mo | acteurs 131 | fps 120
+[17:18:22.108] etat : privee 1957 Mo | travail 1990 Mo | unity 1027/1297 Mo | geree 97 Mo | acteurs 131 | fps 120
+[17:18:24.113] etat : privee 1959 Mo | travail 1992 Mo | unity 1027/1297 Mo | geree 112 Mo | acteurs 131 | fps 117
+[17:18:26.122] etat : privee 1959 Mo | travail 1992 Mo | unity 1027/1297 Mo | geree 107 Mo | acteurs 131 | fps 118
+[17:18:28.130] etat : privee 1966 Mo | travail 1999 Mo | unity 1027/1297 Mo | geree 101 Mo | acteurs 128 | fps 114
+[17:18:30.131] etat : privee 1966 Mo | travail 2000 Mo | unity 1027/1297 Mo | geree 96 Mo | acteurs 124 | fps 120
+[17:18:32.132] etat : privee 1989 Mo | travail 2020 Mo | unity 1028/1298 Mo | geree 112 Mo | acteurs 125 | fps 116
+[17:18:34.137] etat : privee 1993 Mo | travail 2022 Mo | unity 1027/1300 Mo | geree 103 Mo | acteurs 125 | fps 94
+[17:18:36.142] etat : privee 1995 Mo | travail 2025 Mo | unity 1027/1300 Mo | geree 93 Mo | acteurs 124 | fps 96
+[17:18:38.148] etat : privee 1995 Mo | travail 2026 Mo | unity 1028/1300 Mo | geree 107 Mo | acteurs 121 | fps 95
+[17:18:40.149] etat : privee 1995 Mo | travail 2025 Mo | unity 1028/1300 Mo | geree 103 Mo | acteurs 121 | fps 93

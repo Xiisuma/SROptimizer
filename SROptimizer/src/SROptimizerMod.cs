@@ -139,6 +139,20 @@ namespace SROptimizer
             }
         }
 
+        /// <summary>
+        /// Active ou desactive un module et aligne l'interrupteur de configuration
+        /// correspondant, pour que SyncModulesWithConfig ne revienne pas sur la decision.
+        /// </summary>
+        public void SetModuleEnabled(string moduleId, bool enabled)
+        {
+            var module = FindModule(moduleId);
+            if (module == null) return;
+
+            Profiles.SetSwitch(moduleId, enabled);
+            if (enabled) module.Enable(HarmonyInstance);
+            else module.Disable(HarmonyInstance);
+        }
+
         public IOptimizerModule FindModule(string id)
         {
             foreach (var module in _modules)

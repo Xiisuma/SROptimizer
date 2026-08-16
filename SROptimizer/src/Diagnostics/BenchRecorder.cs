@@ -154,6 +154,50 @@ namespace SROptimizer.Diagnostics
                 $"targetFrameRate {_savedTargetFrameRate} -> -1).");
         }
 
+        /// <summary>
+        /// Ouvre une nouvelle phase de mesure : change la note portee par les lignes, vide la
+        /// fenetre de frametime et repousse la prochaine ecriture du delai de stabilisation.
+        ///
+        /// Vider la fenetre est le point essentiel. Elle porte 1024 frames, soit une dizaine de
+        /// secondes : sans purge, les premieres lignes d'une phase decriraient encore la phase
+        /// precedente et melangeraient les deux etats compares.
+        /// </summary>
+        public void BeginPhase(string note, float settleSeconds)
+        {
+            if (!IsRecording) return;
+
+            _note = SanitizeNote(note);
+            _monitor.Reset();
+
+            // La premiere ligne tombe a la fin de la stabilisation, pas un intervalle plus tard.
+            // Avec l'ancien calcul, stabilisation + intervalle pouvait depasser la duree d'une
+            // phase : chaque bascule repoussait l'ecriture avant qu'elle n'arrive, et le fichier
+            // restait vide de bout en bout.
+            _nextSampleTime = Time.realtimeSinceStartup + Mathf.Max(0f, settleSeconds);
+
+            WarnIfPhaseTooShort(settleSeconds);
+        }
+
+        /// <summary>
+        /// Previent quand la duree de phase ne laisse pas la place a une seule ligne. Une capture
+        /// A/B qui ne produit aucune donnee doit le dire pendant la partie, pas apres coup.
+        /// </summary>
+        private void WarnIfPhaseTooShort(float settleSeconds)
+        {
+            if (!SROptimizerConfig.Benchmark.abEnabled || _phaseWarningShown) return;
+
+            var phase = SROptimizerConfig.Benchmark.abIntervalSeconds;
+            if (settleSeconds + SampleInterval <= phase) return;
+
+            _phaseWarningShown = true;
+            SROptimizerMod.Log.LogWarning(
+                $"Mode A/B : phases de {phase:F0} s, mais stabilisation {settleSeconds:F0} s + " +
+                $"intervalle d'echantillon {SampleInterval:F0} s. Aucune ligne ne sera ecrite. " +
+                $"Augmenter abIntervalSeconds a au moins {settleSeconds + SampleInterval:F0} s.");
+        }
+
+        private bool _phaseWarningShown;
+
         /// <summary>Restaure les reglages de frequence d'origine.</summary>
         public void RestoreFrameRate()
         {
