@@ -88,8 +88,7 @@ namespace SROptimizer
         {
             _modules.Clear();
             _modulesView = null;
-            // Aucun module d'optimisation n'est encore implemente : cette version ne fait
-            // qu'observer. Les patchs arrivent aux etapes suivantes du plan.
+            _modules.Add(new BehaviourLodModule());
         }
 
         /// <summary>Aligne l'etat reel des modules sur les interrupteurs de configuration.</summary>

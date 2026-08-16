@@ -66,6 +66,28 @@ namespace SROptimizer.Config
             public static bool unlockFrameRate = true;
         }
 
+        [ConfigSection("LOD")]
+        public static class Lod
+        {
+            [ConfigComment("En deca de cette distance au joueur, en metres, le comportement d'origine " +
+                           "est conserve integralement.")]
+            public static float nearDistance = 30f;
+
+            [ConfigComment("Limite entre le palier moyen et le palier lointain, en metres.")]
+            public static float midDistance = 70f;
+
+            [ConfigComment("Palier moyen : le slime pense 1 frame sur N. 1 desactive l'espacement.")]
+            public static int midDivisor = 2;
+
+            [ConfigComment("Palier lointain : le slime pense 1 frame sur N.")]
+            public static int farDivisor = 6;
+
+            [ConfigComment("Traite un slime situe derriere la camera comme lointain, meme s'il est " +
+                           "proche. Test par produit scalaire : un test de frustum complet par slime " +
+                           "couterait plus cher que ce qu'il ferait economiser.")]
+            public static bool treatOffscreenAsFar = true;
+        }
+
         [ConfigSection("MODULES")]
         public static class Modules
         {

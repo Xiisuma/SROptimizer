@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using SRML;
 using SROptimizer.Config;
+using SROptimizer.Modules;
 using UnityEngine;
 
 namespace SROptimizer.Diagnostics
@@ -21,7 +22,7 @@ namespace SROptimizer.Diagnostics
         private const string Header =
             "horodatage,profil,secondes_ecoulees,fps_moyen,fps_1pct_low,fps_01pct_low," +
             "frametime_moyen_ms,frametime_median_ms,frametime_pire_ms,frames_echantillonnees," +
-            "memoire_geree_mo,alloc_mo_par_s,acteurs_fixedupdate,acteurs_update,acteurs_lateupdate,note";
+            "memoire_geree_mo,alloc_mo_par_s,acteurs_fixedupdate,acteurs_update,acteurs_lateupdate,modules_actifs,lod_pct_evite,note";
 
         private readonly PerfMonitor _monitor;
         private readonly StringBuilder _line = new StringBuilder(256);
@@ -205,6 +206,8 @@ namespace SROptimizer.Diagnostics
                  .Append(ActorCounter.FixedUpdateActors.ToString(c)).Append(',')
                  .Append(ActorCounter.UpdateActors.ToString(c)).Append(',')
                  .Append(ActorCounter.LateUpdateActors.ToString(c)).Append(',')
+                 .Append(ActiveModuleIds()).Append(',')
+                 .Append(LodGate.SkipRatioPercent.ToString("F1", c)).Append(',')
                  .Append(_note);
         }
 
@@ -238,6 +241,26 @@ namespace SROptimizer.Diagnostics
                 SROptimizerMod.Log.LogError($"Chemin du fichier de mesure irresolvable : {e.Message}");
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Identifiants des modules actifs, separes par des points-virgules pour ne pas
+        /// casser le CSV. Sans cette colonne, rien dans le fichier ne distingue une capture
+        /// de reference d'une capture avec optimisations.
+        /// </summary>
+        private static string ActiveModuleIds()
+        {
+            var modules = SROptimizerMod.Instance?.Modules;
+            if (modules == null || modules.Count == 0) return "aucun";
+
+            var result = "";
+            foreach (var module in modules)
+            {
+                if (!module.IsEnabled) continue;
+                if (result.Length > 0) result += ";";
+                result += module.Id;
+            }
+            return result.Length == 0 ? "aucun" : result;
         }
 
         /// <summary>La note finit dans une colonne CSV : on retire ce qui casserait le format.</summary>

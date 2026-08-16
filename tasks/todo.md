@@ -182,7 +182,7 @@ Aucun module n'est marqué terminé sans :
 - [x] Étape 1 — squelette du projet + build `SROptimizer.dll` *(net472, `modinfo.json` embarqué, déploiement auto dans `SRML/Mods`)*
 - [x] Étape 2 — Module H (config, console, overlay) *(build sans erreur ni avertissement ; chargement en jeu non encore vérifié)*
 - [x] Étape 3 — mesure de référence établie *(2 sessions, 108 lignes, résultats dans `tasks/baseline.md`)*
-- [ ] Étape 4 — Module A (LOD comportemental)
+- [~] Étape 4 — Module A (LOD comportemental) *(implémenté, build propre ; mesure en jeu à faire)*
 - [ ] Étape 5 — Module C (allocations)
 - [ ] Étape 6 — Module D (ActorRegistry)
 - [ ] Étape 7 — Module B (cache de recherche)

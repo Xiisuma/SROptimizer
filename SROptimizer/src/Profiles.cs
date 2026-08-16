@@ -11,6 +11,7 @@ namespace SROptimizer
     /// safe       : aucun comportement de jeu observable n'est modifie.
     /// balanced   : gains significatifs, comportements distants degrades de facon imperceptible.
     /// aggressive : gains maximaux, comportements distants et rendu visiblement degrades.
+    /// custom     : le profil ne touche a rien, les interrupteurs de la section MODULES font foi.
     /// </summary>
     public static class Profiles
     {
@@ -18,7 +19,14 @@ namespace SROptimizer
         public const string Balanced = "balanced";
         public const string Aggressive = "aggressive";
 
-        public static readonly string[] All = { Safe, Balanced, Aggressive };
+        /// <summary>
+        /// Profil qui n'impose rien. Sans lui, ApplyToConfig ecraserait au demarrage les
+        /// interrupteurs de la section MODULES : un utilisateur activant un module a la main
+        /// dans le fichier verrait son reglage ignore sans le moindre message.
+        /// </summary>
+        public const string Custom = "custom";
+
+        public static readonly string[] All = { Safe, Balanced, Aggressive, Custom };
 
         /// <summary>
         /// Modules actives par chaque profil. Les modules absents de la liste sont desactives.
@@ -29,7 +37,8 @@ namespace SROptimizer
             {
                 [Safe] = new[] { "alloc", "registry" },
                 [Balanced] = new[] { "alloc", "registry", "lod", "cache", "autosave" },
-                [Aggressive] = new[] { "alloc", "registry", "lod", "cache", "autosave", "culling", "physics" }
+                [Aggressive] = new[] { "alloc", "registry", "lod", "cache", "autosave", "culling", "physics" },
+                [Custom] = new string[0]
             };
 
         public static bool IsKnown(string profile) =>
@@ -60,6 +69,10 @@ namespace SROptimizer
         public static void ApplyToConfig(string profile)
         {
             var p = Normalize(profile);
+
+            // En custom, les interrupteurs du fichier font foi : ne rien ecraser.
+            if (p == Custom) return;
+
             SROptimizerConfig.Modules.behaviourLod = Includes(p, "lod");
             SROptimizerConfig.Modules.consumableCache = Includes(p, "cache");
             SROptimizerConfig.Modules.allocationTrimming = Includes(p, "alloc");
