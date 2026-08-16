@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 
 namespace SROptimizer.Diagnostics
@@ -10,27 +11,79 @@ namespace SROptimizer.Diagnostics
     /// C'est volontaire : Object.FindObjectsOfType couterait plusieurs millisecondes et
     /// polluerait la mesure de frametime que ce module sert justement a etablir.
     ///
-    /// Les FieldInfo sont resolus une seule fois puis mis en cache.
+    /// Les trois listes sont des types generiques fermes DIFFERENTS
+    /// (ExposedArrayList&lt;RegistryFixedUpdateable&gt;, &lt;RegistryUpdateable&gt;,
+    /// &lt;RegistryLateUpdateable&gt;). Un MethodInfo de GetCount obtenu sur l'un ne s'applique
+    /// pas aux autres : chaque accesseur garde donc le sien.
     /// </summary>
     public static class ActorCounter
     {
-        private static bool _resolved;
-        private static FieldInfo _fixedUpdateList;
-        private static FieldInfo _updateList;
-        private static FieldInfo _lateUpdateList;
-        private static MethodInfo _getCount;
+        /// <summary>Champ prive du registre, avec le GetCount de son propre type ferme.</summary>
+        private sealed class ListAccessor
+        {
+            private readonly string _fieldName;
+            private FieldInfo _field;
+            private MethodInfo _getCount;
+            private bool _resolved;
+
+            public ListAccessor(string fieldName) => _fieldName = fieldName;
+
+            public int Read(ActorRegistry registry)
+            {
+                Resolve();
+                if (_field == null || _getCount == null || registry == null) return -1;
+
+                var list = _field.GetValue(registry);
+                if (list == null) return -1;
+
+                return (int)_getCount.Invoke(list, null);
+            }
+
+            private void Resolve()
+            {
+                if (_resolved) return;
+                _resolved = true;
+
+                _field = typeof(ActorRegistry).GetField(
+                    _fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
+
+                if (_field == null)
+                {
+                    SROptimizerMod.Log.LogWarning(
+                        $"Champ '{_fieldName}' introuvable dans ActorRegistry : ce compteur restera a -1.");
+                    return;
+                }
+
+                _getCount = _field.FieldType.GetMethod("GetCount");
+                if (_getCount == null)
+                {
+                    SROptimizerMod.Log.LogWarning(
+                        $"GetCount() introuvable sur {_field.FieldType} : ce compteur restera a -1.");
+                }
+            }
+        }
+
+        private static readonly ListAccessor FixedUpdate = new ListAccessor("fixedUpdateActorsList");
+        private static readonly ListAccessor Update = new ListAccessor("updateActorsList");
+        private static readonly ListAccessor LateUpdate = new ListAccessor("lateUpdateActorsList");
+
+        /// <summary>
+        /// Passe a true si la reflexion echoue. Une erreur ici survient a chaque frame :
+        /// sans ce verrou, la moindre incompatibilite noie le journal du jeu.
+        /// </summary>
+        private static bool _disabled;
 
         /// <summary>Nombre d'acteurs recevant RegistryFixedUpdate, ou -1 si indisponible.</summary>
-        public static int FixedUpdateActors => Count(_fixedUpdateList);
+        public static int FixedUpdateActors => Read(FixedUpdate);
 
         /// <summary>Nombre d'acteurs recevant RegistryUpdate, ou -1 si indisponible.</summary>
-        public static int UpdateActors => Count(_updateList);
+        public static int UpdateActors => Read(Update);
 
         /// <summary>Nombre d'acteurs recevant RegistryLateUpdate, ou -1 si indisponible.</summary>
-        public static int LateUpdateActors => Count(_lateUpdateList);
+        public static int LateUpdateActors => Read(LateUpdate);
 
-        /// <summary>Vrai si un ActorRegistry est present, donc si une partie est chargee.</summary>
-        public static bool IsAvailable => GetRegistry() != null;
+        /// <summary>Vrai si les compteurs sont exploitables et si une partie est chargee.</summary>
+        public static bool IsAvailable => !_disabled && GetRegistry() != null;
 
         private static ActorRegistry GetRegistry()
         {
@@ -38,41 +91,22 @@ namespace SROptimizer.Diagnostics
             return scene == null ? null : scene.ActorRegistry;
         }
 
-        private static void Resolve()
+        private static int Read(ListAccessor accessor)
         {
-            if (_resolved) return;
-            _resolved = true;
+            if (_disabled) return -1;
 
-            const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-            var type = typeof(ActorRegistry);
-
-            _fixedUpdateList = type.GetField("fixedUpdateActorsList", flags);
-            _updateList = type.GetField("updateActorsList", flags);
-            _lateUpdateList = type.GetField("lateUpdateActorsList", flags);
-
-            var listType = _fixedUpdateList?.FieldType;
-            _getCount = listType?.GetMethod("GetCount");
-
-            if (_fixedUpdateList == null || _getCount == null)
+            try
             {
-                SROptimizerMod.Log.LogWarning(
-                    "Champs internes d'ActorRegistry introuvables : les compteurs d'acteurs " +
-                    "resteront a -1. La version du jeu a probablement change.");
+                return accessor.Read(GetRegistry());
             }
-        }
-
-        private static int Count(FieldInfo field)
-        {
-            Resolve();
-            if (field == null || _getCount == null) return -1;
-
-            var registry = GetRegistry();
-            if (registry == null) return -1;
-
-            var list = field.GetValue(registry);
-            if (list == null) return -1;
-
-            return (int)_getCount.Invoke(list, null);
+            catch (Exception e)
+            {
+                _disabled = true;
+                SROptimizerMod.Log.LogError(
+                    "Lecture des compteurs d'ActorRegistry abandonnee definitivement pour cette " +
+                    $"session apres une erreur : {e.Message}");
+                return -1;
+            }
         }
     }
 }

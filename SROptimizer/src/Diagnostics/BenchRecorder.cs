@@ -94,10 +94,29 @@ namespace SROptimizer.Diagnostics
             WriteRow();
         }
 
+        /// <summary>
+        /// Construit et ecrit une ligne. Tout est dans un seul try : cette methode est appelee
+        /// depuis Update, donc une exception qui s'en echappe tue la boucle du runner a chaque
+        /// frame. Mieux vaut arreter la capture que casser la mesure entiere.
+        /// </summary>
         private void WriteRow()
         {
-            if (!_monitor.TryGetStats(out var s)) return;
+            try
+            {
+                if (!_monitor.TryGetStats(out var s)) return;
+                BuildRow(s);
+                File.AppendAllText(_path, _line.ToString() + Environment.NewLine, Encoding.UTF8);
+                RowsWritten++;
+            }
+            catch (Exception e)
+            {
+                IsRecording = false;
+                SROptimizerMod.Log.LogError($"Capture interrompue : {e.Message}");
+            }
+        }
 
+        private void BuildRow(PerfStats s)
+        {
             var c = CultureInfo.InvariantCulture;
             _line.Length = 0;
             _line.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", c)).Append(',')
@@ -116,17 +135,6 @@ namespace SROptimizer.Diagnostics
                  .Append(ActorCounter.UpdateActors.ToString(c)).Append(',')
                  .Append(ActorCounter.LateUpdateActors.ToString(c)).Append(',')
                  .Append(_note);
-
-            try
-            {
-                File.AppendAllText(_path, _line.ToString() + Environment.NewLine, Encoding.UTF8);
-                RowsWritten++;
-            }
-            catch (Exception e)
-            {
-                IsRecording = false;
-                SROptimizerMod.Log.LogError($"Ecriture de la mesure interrompue : {e.Message}");
-            }
         }
 
         private static float SampleInterval =>
