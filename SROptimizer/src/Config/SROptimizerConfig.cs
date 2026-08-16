@@ -46,6 +46,11 @@ namespace SROptimizer.Config
             [ConfigComment("Nom du fichier CSV ecrit dans le dossier de configuration du mod.")]
             public static string outputFile = "baseline.csv";
 
+            [ConfigComment("Ecrit un fichier par capture, horodate. Sinon toutes les captures " +
+                           "s'ajoutent au meme fichier et il faut les separer a la main avant " +
+                           "toute comparaison avant/apres.")]
+            public static bool oneFilePerSession = true;
+
             [ConfigComment("Intervalle en secondes entre deux lignes ecrites. Minimum 1.")]
             public static float sampleIntervalSeconds = 5f;
 

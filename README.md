@@ -11,7 +11,7 @@ Version **0.1.0** — infrastructure et diagnostics. Aucun patch d'optimisation 
 | Squelette du projet, build `SROptimizer.dll` | fait |
 | Module H — configuration, commandes console, overlay de diagnostic | fait |
 | Mesure persistante : CSV, compteurs d'acteurs, capture auto | fait |
-| Relevé de référence sur une sauvegarde réelle | à faire |
+| Relevé de référence sur une sauvegarde réelle | fait — voir [`tasks/baseline.md`](tasks/baseline.md) |
 | Module A — LOD comportemental | à faire |
 | Module C — allocations en boucle chaude | à faire |
 | Module D — budget `ActorRegistry` | à faire |

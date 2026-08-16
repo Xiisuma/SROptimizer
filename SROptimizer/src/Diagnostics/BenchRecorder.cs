@@ -211,12 +211,26 @@ namespace SROptimizer.Diagnostics
         private static float SampleInterval =>
             Mathf.Max(1f, SROptimizerConfig.Benchmark.sampleIntervalSeconds);
 
+        /// <summary>
+        /// Chemin du fichier de sortie. Par defaut une capture par fichier, horodate :
+        /// des captures cumulees dans un meme fichier doivent etre reseparees a la main,
+        /// et une comparaison avant/apres faite sur un melange de sessions ne veut rien dire.
+        /// </summary>
         private static string ResolvePath()
         {
             try
             {
                 var fileName = SROptimizerConfig.Benchmark.outputFile;
                 if (string.IsNullOrEmpty(fileName)) fileName = "baseline.csv";
+
+                if (SROptimizerConfig.Benchmark.oneFilePerSession)
+                {
+                    var stem = Path.GetFileNameWithoutExtension(fileName);
+                    var ext = Path.GetExtension(fileName);
+                    if (string.IsNullOrEmpty(ext)) ext = ".csv";
+                    fileName = $"{stem}_{DateTime.Now:yyyyMMdd_HHmmss}{ext}";
+                }
+
                 return Path.Combine(FileSystem.GetMyConfigPath(), fileName);
             }
             catch (Exception e)
