@@ -10,7 +10,8 @@ Version **0.1.0** — infrastructure et diagnostics. Aucun patch d'optimisation 
 |---|---|
 | Squelette du projet, build `SROptimizer.dll` | fait |
 | Module H — configuration, commandes console, overlay de diagnostic | fait |
-| Mesure de référence sur une sauvegarde réelle | à faire |
+| Mesure persistante : CSV, compteurs d'acteurs, capture auto | fait |
+| Relevé de référence sur une sauvegarde réelle | à faire |
 | Module A — LOD comportemental | à faire |
 | Module C — allocations en boucle chaude | à faire |
 | Module D — budget `ActorRegistry` | à faire |
@@ -37,6 +38,9 @@ sropt status               Profil actif, modules, FPS moyen, 1% low, 0.1% low, d
 sropt profile <nom>        Applique un profil : safe, balanced, aggressive
 sropt module <id> on|off   Active ou désactive un module individuellement
 sropt overlay [on|off]     Bascule ou fixe l'affichage de l'overlay
+sropt bench start [note]   Démarre l'enregistrement CSV des mesures
+sropt bench stop           Arrête l'enregistrement
+sropt bench status         État de l'enregistrement en cours
 sropt reset                Vide la fenêtre de mesure du frametime
 sropt save                 Écrit la configuration courante sur disque
 ```

@@ -39,6 +39,7 @@ namespace SROptimizer
         private GameObject _overlayObject;
         private PerfOverlay _overlay;
         private PerfMonitor _monitor;
+        private SROptimizerRunner _runner;
 
         /// <summary>Modules enregistres, dans leur ordre d'activation.</summary>
         public IList<IOptimizerModule> Modules =>
@@ -46,6 +47,7 @@ namespace SROptimizer
 
         public PerfOverlay Overlay => _overlay;
         public PerfMonitor Monitor => _monitor;
+        public SROptimizerRunner Runner => _runner;
 
         public override void PreLoad()
         {
@@ -160,7 +162,11 @@ namespace SROptimizer
             _overlay = _overlayObject.AddComponent<PerfOverlay>();
             _overlay.Initialize(_monitor);
 
-            Log.Log($"Overlay de diagnostic pret (touche {SROptimizerConfig.Diagnostics.overlayToggleKey}).");
+            _runner = _overlayObject.AddComponent<SROptimizerRunner>();
+            _runner.Initialize(_monitor, _overlay);
+
+            Log.Log($"Diagnostics prets. Overlay sur {SROptimizerConfig.Diagnostics.overlayToggleKey}, " +
+                    $"capture auto {(SROptimizerConfig.Benchmark.autoStart ? "activee" : "desactivee")}.");
         }
     }
 }

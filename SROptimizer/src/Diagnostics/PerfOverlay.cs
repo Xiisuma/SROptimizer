@@ -18,7 +18,6 @@ namespace SROptimizer.Diagnostics
         private readonly StringBuilder _builder = new StringBuilder(512);
         private string _cachedText = "";
         private float _nextRefreshTime;
-        private KeyCode _toggleKey = KeyCode.F9;
         private GUIStyle _style;
         private Texture2D _background;
 
@@ -30,23 +29,11 @@ namespace SROptimizer.Diagnostics
         {
             _monitor = monitor;
             Visible = SROptimizerConfig.Diagnostics.overlayEnabled;
-            _toggleKey = ParseKey(SROptimizerConfig.Diagnostics.overlayToggleKey, KeyCode.F9);
         }
 
         public void Toggle() => Visible = !Visible;
 
         public void SetVisible(bool visible) => Visible = visible;
-
-        private void Update()
-        {
-            if (_monitor == null) return;
-            _monitor.Sample(Time.unscaledDeltaTime);
-
-            if (_toggleKey != KeyCode.None && Input.GetKeyDown(_toggleKey))
-            {
-                Toggle();
-            }
-        }
 
         private void OnGUI()
         {
@@ -95,6 +82,21 @@ namespace SROptimizer.Diagnostics
             _builder.Append('\n')
                 .Append("GC        ").Append((_monitor.ManagedBytes / 1048576.0).ToString("F1")).Append(" Mo retenus")
                 .Append("   ").Append((_monitor.AllocRateBytesPerSecond / 1048576.0).ToString("F2")).Append(" Mo/s");
+
+            if (ActorCounter.IsAvailable)
+            {
+                _builder.Append('\n')
+                    .Append("acteurs   fixed ").Append(ActorCounter.FixedUpdateActors)
+                    .Append("  update ").Append(ActorCounter.UpdateActors)
+                    .Append("  late ").Append(ActorCounter.LateUpdateActors);
+            }
+
+            var bench = SROptimizerMod.Instance?.Runner?.Bench;
+            if (bench != null && bench.IsRecording)
+            {
+                _builder.Append('\n')
+                    .Append("capture   en cours, ").Append(bench.RowsWritten).Append(" ligne(s)");
+            }
 
             var modules = SROptimizerMod.Instance?.Modules;
             if (modules != null)
@@ -158,20 +160,5 @@ namespace SROptimizer.Diagnostics
             if (_background != null) Destroy(_background);
         }
 
-        private static KeyCode ParseKey(string name, KeyCode fallback)
-        {
-            if (string.IsNullOrEmpty(name)) return fallback;
-            try
-            {
-                return (KeyCode)Enum.Parse(typeof(KeyCode), name.Trim(), true);
-            }
-            catch (Exception)
-            {
-                SROptimizerMod.Log.LogWarning(
-                    $"Touche d'overlay '{name}' inconnue, repli sur {fallback}. " +
-                    "Utiliser un nom de UnityEngine.KeyCode (F9, F10, BackQuote, ...).");
-                return fallback;
-            }
-        }
     }
 }

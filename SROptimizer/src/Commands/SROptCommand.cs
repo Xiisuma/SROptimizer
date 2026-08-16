@@ -10,7 +10,7 @@ namespace SROptimizer.Commands
     public class SROptCommand : ConsoleCommand
     {
         public override string ID => "sropt";
-        public override string Usage => "sropt <status|profile|module|overlay|reset|save>";
+        public override string Usage => "sropt <status|profile|module|overlay|bench|reset|save>";
         public override string Description => "Controle et diagnostic de SROptimizer.";
 
         public override string ExtendedDescription =>
@@ -19,6 +19,9 @@ namespace SROptimizer.Commands
             "sropt profile <nom>        Applique un profil : safe, balanced, aggressive\n" +
             "sropt module <id> on|off   Active ou desactive un module individuellement\n" +
             "sropt overlay [on|off]     Bascule ou fixe l'affichage de l'overlay de diagnostic\n" +
+            "sropt bench start [note]   Demarre l'enregistrement CSV des mesures\n" +
+            "sropt bench stop           Arrete l'enregistrement\n" +
+            "sropt bench status         Etat de l'enregistrement en cours\n" +
             "sropt reset                Vide la fenetre de mesure du frametime\n" +
             "sropt save                 Ecrit la configuration courante sur disque";
 
@@ -51,6 +54,9 @@ namespace SROptimizer.Commands
 
                 case "overlay":
                     return HandleOverlay(args);
+
+                case "bench":
+                    return HandleBench(args);
 
                 case "reset":
                     mod.Monitor?.Reset();
@@ -166,6 +172,51 @@ namespace SROptimizer.Commands
             }
         }
 
+        private static bool HandleBench(string[] args)
+        {
+            var bench = SROptimizerMod.Instance.Runner?.Bench;
+            if (bench == null)
+            {
+                SROptimizerMod.Log.LogError("L'enregistreur de mesure n'est pas encore initialise.");
+                return false;
+            }
+
+            var action = args.Length < 2 ? "status" : args[1].ToLowerInvariant();
+
+            switch (action)
+            {
+                case "start":
+                    // Tout ce qui suit "start" devient la note de la capture.
+                    var note = args.Length > 2 ? string.Join(" ", args, 2, args.Length - 2) : "manuel";
+                    return bench.Start(note);
+
+                case "stop":
+                    if (!bench.IsRecording)
+                    {
+                        SROptimizerMod.Log.LogWarning("Aucune capture en cours.");
+                        return true;
+                    }
+                    bench.Stop();
+                    return true;
+
+                case "status":
+                    if (bench.IsRecording)
+                    {
+                        SROptimizerMod.Log.Log($"Capture en cours : {bench.RowsWritten} ligne(s) ecrite(s) " +
+                                               $"dans {bench.OutputPath}");
+                    }
+                    else
+                    {
+                        SROptimizerMod.Log.Log("Aucune capture en cours. Demarrer avec 'sropt bench start [note]'.");
+                    }
+                    return true;
+
+                default:
+                    SROptimizerMod.Log.LogError("Usage : sropt bench start [note] | stop | status");
+                    return false;
+            }
+        }
+
         private static bool HandleOverlay(string[] args)
         {
             var overlay = SROptimizerMod.Instance.Overlay;
@@ -200,7 +251,7 @@ namespace SROptimizer.Commands
             switch (argIndex)
             {
                 case 0:
-                    return new List<string> { "status", "profile", "module", "overlay", "reset", "save" };
+                    return new List<string> { "status", "profile", "module", "overlay", "bench", "reset", "save" };
                 default:
                     return null;
             }

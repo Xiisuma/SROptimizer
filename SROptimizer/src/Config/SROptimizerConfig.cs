@@ -36,6 +36,20 @@ namespace SROptimizer.Config
             public static int sampleWindow = 1024;
         }
 
+        [ConfigSection("BENCHMARK")]
+        public static class Benchmark
+        {
+            [ConfigComment("Demarre l'enregistrement automatiquement des qu'une partie est chargee. " +
+                           "Indispensable pour etablir une mesure de reference sans intervention.")]
+            public static bool autoStart = false;
+
+            [ConfigComment("Nom du fichier CSV ecrit dans le dossier de configuration du mod.")]
+            public static string outputFile = "baseline.csv";
+
+            [ConfigComment("Intervalle en secondes entre deux lignes ecrites. Minimum 1.")]
+            public static float sampleIntervalSeconds = 5f;
+        }
+
         [ConfigSection("MODULES")]
         public static class Modules
         {
