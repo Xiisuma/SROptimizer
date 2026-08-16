@@ -18,6 +18,7 @@ namespace SROptimizer.Diagnostics
         private PerfOverlay _overlay;
         private KeyCode _toggleKey = KeyCode.F9;
         private bool _autoStartDone;
+        private float _nextAbToggleTime;
 
         public BenchRecorder Bench { get; private set; }
 
@@ -41,7 +42,58 @@ namespace SROptimizer.Diagnostics
             }
 
             TryAutoStartBench();
+            TickAbToggle();
             Bench?.Tick();
+        }
+
+        /// <summary>
+        /// Mode A/B : bascule le module cible a intervalle regulier pendant la capture.
+        ///
+        /// Comparer deux sessions differentes ne prouve rien — la sauvegarde, le parcours et la
+        /// zone changent en meme temps que le module, et l'ecart mesure peut venir de n'importe
+        /// laquelle de ces variables. En alternant dans une seule partie, les deux etats sont
+        /// mesures au meme endroit, a quelques secondes d'intervalle.
+        /// </summary>
+        private void TickAbToggle()
+        {
+            if (Bench == null || !Bench.IsRecording || Bench.IsWarmingUp) return;
+            if (!SROptimizerConfig.Benchmark.abEnabled) return;
+
+            var interval = Mathf.Max(5f, SROptimizerConfig.Benchmark.abIntervalSeconds);
+            var now = Time.realtimeSinceStartup;
+
+            if (_nextAbToggleTime <= 0f)
+            {
+                // Premiere phase : on part de l'etat courant du module, sans rien basculer.
+                _nextAbToggleTime = now + interval;
+                AnnouncePhase();
+                return;
+            }
+
+            if (now < _nextAbToggleTime) return;
+            _nextAbToggleTime = now + interval;
+
+            var module = SROptimizerMod.Instance.FindModule(SROptimizerConfig.Benchmark.abModuleId);
+            if (module == null)
+            {
+                SROptimizerMod.Log.LogError(
+                    $"Mode A/B : module '{SROptimizerConfig.Benchmark.abModuleId}' introuvable, mode arrete.");
+                SROptimizerConfig.Benchmark.abEnabled = false;
+                return;
+            }
+
+            SROptimizerMod.Instance.SetModuleEnabled(module.Id, !module.IsEnabled);
+            AnnouncePhase();
+        }
+
+        private void AnnouncePhase()
+        {
+            var module = SROptimizerMod.Instance.FindModule(SROptimizerConfig.Benchmark.abModuleId);
+            if (module == null) return;
+
+            var note = $"ab {module.Id}={(module.IsEnabled ? "on" : "off")}";
+            Bench.BeginPhase(note, SROptimizerConfig.Benchmark.abSettleSeconds);
+            SROptimizerMod.Log.Log($"Mode A/B : phase '{note}'.");
         }
 
         // La capture leve la vsync : ne jamais laisser le jeu se fermer, ou l'objet disparaitre,

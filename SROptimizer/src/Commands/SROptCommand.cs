@@ -151,26 +151,12 @@ namespace SROptimizer.Commands
             }
 
             var enable = state == "on";
-            SetModuleSwitch(module.Id, enable);
-            mod.SyncModulesWithConfig();
+            mod.SetModuleEnabled(module.Id, enable);
             SROptimizerMod.Log.LogSuccess($"Module '{module.Id}' {(enable ? "active" : "desactive")}. " +
                                "Utiliser 'sropt save' pour rendre le changement permanent.");
             return true;
         }
 
-        private static void SetModuleSwitch(string moduleId, bool enabled)
-        {
-            switch (moduleId)
-            {
-                case "lod": SROptimizerConfig.Modules.behaviourLod = enabled; break;
-                case "cache": SROptimizerConfig.Modules.consumableCache = enabled; break;
-                case "alloc": SROptimizerConfig.Modules.allocationTrimming = enabled; break;
-                case "registry": SROptimizerConfig.Modules.actorRegistryBudget = enabled; break;
-                case "autosave": SROptimizerConfig.Modules.smoothAutosave = enabled; break;
-                case "culling": SROptimizerConfig.Modules.renderCulling = enabled; break;
-                case "physics": SROptimizerConfig.Modules.physicsTuning = enabled; break;
-            }
-        }
 
         private static bool HandleBench(string[] args)
         {

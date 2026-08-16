@@ -154,6 +154,23 @@ namespace SROptimizer.Diagnostics
                 $"targetFrameRate {_savedTargetFrameRate} -> -1).");
         }
 
+        /// <summary>
+        /// Ouvre une nouvelle phase de mesure : change la note portee par les lignes, vide la
+        /// fenetre de frametime et repousse la prochaine ecriture du delai de stabilisation.
+        ///
+        /// Vider la fenetre est le point essentiel. Elle porte 1024 frames, soit une dizaine de
+        /// secondes : sans purge, les premieres lignes d'une phase decriraient encore la phase
+        /// precedente et melangeraient les deux etats compares.
+        /// </summary>
+        public void BeginPhase(string note, float settleSeconds)
+        {
+            if (!IsRecording) return;
+
+            _note = SanitizeNote(note);
+            _monitor.Reset();
+            _nextSampleTime = Time.realtimeSinceStartup + Mathf.Max(0f, settleSeconds) + SampleInterval;
+        }
+
         /// <summary>Restaure les reglages de frequence d'origine.</summary>
         public void RestoreFrameRate()
         {
