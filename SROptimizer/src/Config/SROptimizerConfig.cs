@@ -34,6 +34,16 @@ namespace SROptimizer.Config
 
             [ConfigComment("Nombre de frames conservees pour calculer moyenne, 1% low et 0.1% low.")]
             public static int sampleWindow = 1024;
+
+            [ConfigComment("Journal de survie ecrit et vide a chaque ligne, dans watchdog.log. " +
+                           "Les plantages observes sont natifs : le processus meurt avant que les " +
+                           "tampons d'ecriture soient vides, donc les journaux habituels s'arretent " +
+                           "net et ne disent rien. Couteux, mais c'est le seul moyen de savoir ce " +
+                           "que faisait le jeu a la derniere seconde.")]
+            public static bool watchdogEnabled = true;
+
+            [ConfigComment("Intervalle en secondes entre deux lignes d'etat du journal de survie.")]
+            public static float watchdogIntervalSeconds = 2f;
         }
 
         [ConfigSection("BENCHMARK")]

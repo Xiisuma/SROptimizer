@@ -27,6 +27,7 @@ namespace SROptimizer.Diagnostics
             _monitor = monitor;
             _overlay = overlay;
             Bench = new BenchRecorder(monitor);
+            CrashWatchdog.Start();
             _toggleKey = ParseKey(SROptimizerConfig.Diagnostics.overlayToggleKey, KeyCode.F9);
         }
 
@@ -41,6 +42,7 @@ namespace SROptimizer.Diagnostics
                 _overlay?.Toggle();
             }
 
+            CrashWatchdog.Heartbeat();
             TryAutoStartBench();
             TickAbToggle();
             Bench?.Tick();
@@ -98,7 +100,11 @@ namespace SROptimizer.Diagnostics
 
         // La capture leve la vsync : ne jamais laisser le jeu se fermer, ou l'objet disparaitre,
         // sans avoir rendu au joueur ses reglages d'origine.
-        private void OnApplicationQuit() => Bench?.Stop();
+        private void OnApplicationQuit()
+        {
+            Bench?.Stop();
+            CrashWatchdog.Stop("fermeture du jeu");
+        }
 
         private void OnDestroy() => Bench?.RestoreFrameRate();
 
