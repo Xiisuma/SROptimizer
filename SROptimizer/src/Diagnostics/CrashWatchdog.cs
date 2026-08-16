@@ -1,5 +1,5 @@
 using System;
-using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.IO;
 using System.Text;
 using SRML;
@@ -27,7 +27,67 @@ namespace SROptimizer.Diagnostics
         private static StreamWriter _writer;
         private static bool _failed;
         private static float _nextHeartbeat;
-        private static readonly Process Self = Process.GetCurrentProcess();
+
+        /// <summary>
+        /// Compteurs memoire du processus, lus via psapi.
+        ///
+        /// System.Diagnostics.Process.PrivateMemorySize64 renvoie 0 sous le Mono du jeu : la
+        /// premiere version du journal a rempli des centaines de lignes de « privee 0 Mo », donc
+        /// precisement la mesure qui compte — l'approche du plafond des 4 Go d'un build 32 bits —
+        /// etait absente. L'appel systeme, lui, donne la vraie valeur.
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential)]
+        private struct ProcessMemoryCounters
+        {
+            public uint cb;
+            public uint PageFaultCount;
+            public IntPtr PeakWorkingSetSize;
+            public IntPtr WorkingSetSize;
+            public IntPtr QuotaPeakPagedPoolUsage;
+            public IntPtr QuotaPagedPoolUsage;
+            public IntPtr QuotaPeakNonPagedPoolUsage;
+            public IntPtr QuotaNonPagedPoolUsage;
+            public IntPtr PagefileUsage;
+            public IntPtr PeakPagefileUsage;
+            public IntPtr PrivateUsage;
+        }
+
+        [DllImport("psapi.dll", SetLastError = true)]
+        private static extern bool GetProcessMemoryInfo(IntPtr process, out ProcessMemoryCounters counters, uint size);
+
+        [DllImport("kernel32.dll")]
+        private static extern IntPtr GetCurrentProcess();
+
+        private static bool _memoryApiFailed;
+
+        /// <summary>Memoire privee et working set du processus en Mo, ou (-1, -1) si indisponible.</summary>
+        private static void ReadProcessMemory(out long privateMo, out long workingMo)
+        {
+            privateMo = -1;
+            workingMo = -1;
+            if (_memoryApiFailed) return;
+
+            try
+            {
+                var counters = new ProcessMemoryCounters
+                {
+                    cb = (uint)Marshal.SizeOf(typeof(ProcessMemoryCounters))
+                };
+
+                if (!GetProcessMemoryInfo(GetCurrentProcess(), out counters, counters.cb))
+                {
+                    _memoryApiFailed = true;
+                    return;
+                }
+
+                privateMo = counters.PrivateUsage.ToInt64() / 1048576;
+                workingMo = counters.WorkingSetSize.ToInt64() / 1048576;
+            }
+            catch (Exception)
+            {
+                _memoryApiFailed = true;
+            }
+        }
 
         public static bool IsActive => _writer != null && !_failed;
 
@@ -88,13 +148,14 @@ namespace SROptimizer.Diagnostics
 
             try
             {
-                Self.Refresh();
-                var privateMo = Self.PrivateMemorySize64 / 1048576;
-                var workingMo = Self.WorkingSet64 / 1048576;
+                ReadProcessMemory(out var privateMo, out var workingMo);
                 var unityMo = Profiler.GetTotalAllocatedMemoryLong() / 1048576;
+                var reserveeMo = Profiler.GetTotalReservedMemoryLong() / 1048576;
                 var geree = GC.GetTotalMemory(false) / 1048576;
 
-                Write($"etat : privee {privateMo} Mo | travail {workingMo} Mo | unity {unityMo} Mo | " +
+                // La memoire privee est la valeur decisive : un build 32 bits meurt vers 4 Go,
+                // souvent des 3 Go en pratique, et toujours par un plantage natif silencieux.
+                Write($"etat : privee {privateMo} Mo | travail {workingMo} Mo | unity {unityMo}/{reserveeMo} Mo | " +
                       $"geree {geree} Mo | acteurs {ActorCounter.FixedUpdateActors} | " +
                       $"fps {(Time.unscaledDeltaTime > 0f ? 1f / Time.unscaledDeltaTime : 0f):F0}");
             }
