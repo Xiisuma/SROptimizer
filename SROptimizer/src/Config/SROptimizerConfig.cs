@@ -48,6 +48,17 @@ namespace SROptimizer.Config
 
             [ConfigComment("Intervalle en secondes entre deux lignes ecrites. Minimum 1.")]
             public static float sampleIntervalSeconds = 5f;
+
+            [ConfigComment("Delai avant la premiere ligne, en secondes. La fenetre de mesure est videe " +
+                           "a la fin de ce delai : sans cela les a-coups de chargement de zone " +
+                           "(plus d'une seconde) ecrasent le 0.1% low pendant tout le reste de la capture.")]
+            public static float warmupSeconds = 20f;
+
+            [ConfigComment("Leve la limite de frequence pendant la capture (vsync et targetFrameRate). " +
+                           "Le jeu est bloque par la vsync : frametime median fige a la periode de " +
+                           "l'ecran, donc le FPS moyen ne peut pas mesurer un gain. Les reglages " +
+                           "d'origine sont restaures a l'arret de la capture.")]
+            public static bool unlockFrameRate = true;
         }
 
         [ConfigSection("MODULES")]

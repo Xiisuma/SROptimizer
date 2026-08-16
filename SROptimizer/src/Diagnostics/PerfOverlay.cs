@@ -94,8 +94,15 @@ namespace SROptimizer.Diagnostics
             var bench = SROptimizerMod.Instance?.Runner?.Bench;
             if (bench != null && bench.IsRecording)
             {
-                _builder.Append('\n')
-                    .Append("capture   en cours, ").Append(bench.RowsWritten).Append(" ligne(s)");
+                _builder.Append('\n').Append("capture   ");
+                if (bench.IsWarmingUp)
+                {
+                    _builder.Append("chauffe, ").Append(bench.WarmupRemaining.ToString("F0")).Append(" s restantes");
+                }
+                else
+                {
+                    _builder.Append("en cours, ").Append(bench.RowsWritten).Append(" ligne(s)");
+                }
             }
 
             var modules = SROptimizerMod.Instance?.Modules;

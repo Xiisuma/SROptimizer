@@ -28,12 +28,26 @@ namespace SROptimizer.Diagnostics
 
         private float _nextSampleTime;
         private float _startTime;
+        private float _warmupEndTime;
+        private bool _warmupDone;
         private string _note = "";
         private string _path;
+
+        // Reglages de frequence a restaurer a l'arret de la capture.
+        private bool _frameRateOverridden;
+        private int _savedVSyncCount;
+        private int _savedTargetFrameRate;
 
         public bool IsRecording { get; private set; }
         public int RowsWritten { get; private set; }
         public string OutputPath => _path;
+
+        /// <summary>Vrai tant que la periode de chauffe n'est pas terminee.</summary>
+        public bool IsWarmingUp => IsRecording && !_warmupDone;
+
+        /// <summary>Secondes restantes de chauffe, 0 si terminee.</summary>
+        public float WarmupRemaining =>
+            IsWarmingUp ? Mathf.Max(0f, _warmupEndTime - Time.realtimeSinceStartup) : 0f;
 
         public BenchRecorder(PerfMonitor monitor)
         {
@@ -68,12 +82,19 @@ namespace SROptimizer.Diagnostics
             }
 
             _monitor.Reset();
+            var warmup = Mathf.Max(0f, SROptimizerConfig.Benchmark.warmupSeconds);
             _startTime = Time.realtimeSinceStartup;
-            _nextSampleTime = _startTime + SampleInterval;
+            _warmupEndTime = _startTime + warmup;
+            _warmupDone = warmup <= 0f;
+            _nextSampleTime = _warmupEndTime + SampleInterval;
             RowsWritten = 0;
             IsRecording = true;
 
-            SROptimizerMod.Log.LogSuccess($"Capture demarree, ecriture dans {_path}");
+            UnlockFrameRate();
+
+            SROptimizerMod.Log.LogSuccess(
+                $"Capture demarree, ecriture dans {_path}" +
+                (warmup > 0f ? $" (chauffe de {warmup:F0} s avant la premiere ligne)" : ""));
             return true;
         }
 
@@ -81,6 +102,7 @@ namespace SROptimizer.Diagnostics
         {
             if (!IsRecording) return;
             IsRecording = false;
+            RestoreFrameRate();
             SROptimizerMod.Log.Log($"Capture arretee apres {RowsWritten} ligne(s) dans {_path}");
         }
 
@@ -88,10 +110,59 @@ namespace SROptimizer.Diagnostics
         public void Tick()
         {
             if (!IsRecording) return;
-            if (Time.realtimeSinceStartup < _nextSampleTime) return;
 
-            _nextSampleTime = Time.realtimeSinceStartup + SampleInterval;
+            var now = Time.realtimeSinceStartup;
+
+            // Fin de la chauffe : on jette les frames accumulees. Le chargement de la partie
+            // produit des a-coups de plus d'une seconde qui, gardes dans la fenetre, fixent le
+            // 0.1% low a une valeur absurde pour toute la duree de la capture.
+            if (!_warmupDone)
+            {
+                if (now < _warmupEndTime) return;
+                _warmupDone = true;
+                _startTime = now;
+                _monitor.Reset();
+                SROptimizerMod.Log.Log("Chauffe terminee, mesure en cours.");
+            }
+
+            if (now < _nextSampleTime) return;
+
+            _nextSampleTime = now + SampleInterval;
             WriteRow();
+        }
+
+        /// <summary>
+        /// Leve la limite de frequence le temps de la capture. Sans cela, le frametime median
+        /// reste fige a la periode de rafraichissement de l'ecran et aucun gain de performance
+        /// ne peut apparaitre dans la mesure.
+        /// </summary>
+        private void UnlockFrameRate()
+        {
+            if (_frameRateOverridden) return;
+            if (!SROptimizerConfig.Benchmark.unlockFrameRate) return;
+
+            _savedVSyncCount = QualitySettings.vSyncCount;
+            _savedTargetFrameRate = Application.targetFrameRate;
+            _frameRateOverridden = true;
+
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = -1;
+
+            SROptimizerMod.Log.Log(
+                $"Limite de frequence levee pour la capture (vsync {_savedVSyncCount} -> 0, " +
+                $"targetFrameRate {_savedTargetFrameRate} -> -1).");
+        }
+
+        /// <summary>Restaure les reglages de frequence d'origine.</summary>
+        public void RestoreFrameRate()
+        {
+            if (!_frameRateOverridden) return;
+            _frameRateOverridden = false;
+
+            QualitySettings.vSyncCount = _savedVSyncCount;
+            Application.targetFrameRate = _savedTargetFrameRate;
+
+            SROptimizerMod.Log.Log("Reglages de frequence restaures.");
         }
 
         /// <summary>

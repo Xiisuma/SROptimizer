@@ -44,6 +44,12 @@ namespace SROptimizer.Diagnostics
             Bench?.Tick();
         }
 
+        // La capture leve la vsync : ne jamais laisser le jeu se fermer, ou l'objet disparaitre,
+        // sans avoir rendu au joueur ses reglages d'origine.
+        private void OnApplicationQuit() => Bench?.Stop();
+
+        private void OnDestroy() => Bench?.RestoreFrameRate();
+
         /// <summary>
         /// Demarre la capture automatique une fois qu'une partie est reellement chargee.
         /// Attendre l'ActorRegistry evite d'enregistrer les frames du menu principal, qui
