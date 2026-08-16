@@ -57,7 +57,8 @@ namespace SROptimizer.Modules
             // Le patch reste pose : c'est ce booleen qui le neutralise. Le desinstaller a chaud
             // faisait planter le jeu en natif, voir la remarque de OptimizerModuleBase.
             LodGate.Active = false;
-            Diagnostics.CrashWatchdog.Write("module lod : inactif");
+            Diagnostics.CrashWatchdog.Write(
+                $"module lod : inactif apres {LodGate.Skipped} appels evites sur {LodGate.Considered}");
         }
 
         public override string GetStatusLine()

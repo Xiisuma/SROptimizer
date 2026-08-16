@@ -36,6 +36,7 @@ namespace SROptimizer.Diagnostics
             if (_monitor == null) return;
 
             _monitor.Sample(Time.unscaledDeltaTime);
+            ReportFrameSpike();
 
             if (_toggleKey != KeyCode.None && Input.GetKeyDown(_toggleKey))
             {
@@ -47,6 +48,25 @@ namespace SROptimizer.Diagnostics
             TickAbToggle();
             Bench?.Tick();
         }
+
+        /// <summary>
+        /// Signale toute frame anormalement longue dans le journal de survie.
+        ///
+        /// Un gel de plusieurs secondes ne laisse aucune trace dans les mesures glissantes :
+        /// il est noye dans la moyenne et le battement periodique passe a cote. Cette ligne,
+        /// ecrite des la frame suivante, date le blocage a la milliseconde et dit combien
+        /// d'acteurs etaient simules a cet instant.
+        /// </summary>
+        private void ReportFrameSpike()
+        {
+            var ms = Time.unscaledDeltaTime * 1000f;
+            if (ms < SpikeThresholdMs) return;
+
+            CrashWatchdog.Write($"frame longue : {ms:F0} ms | acteurs {ActorCounter.FixedUpdateActors} | " +
+                                $"lod {(SROptimizerMod.Instance.FindModule("lod")?.IsEnabled == true ? "on" : "off")}");
+        }
+
+        private const float SpikeThresholdMs = 250f;
 
         /// <summary>
         /// Mode A/B : bascule le module cible a intervalle regulier pendant la capture.
@@ -84,8 +104,19 @@ namespace SROptimizer.Diagnostics
                 return;
             }
 
-            SROptimizerMod.Instance.SetModuleEnabled(module.Id, !module.IsEnabled);
+            // Tracage fin de la bascule. Les trois incidents observes sont survenus a moins de
+            // deux secondes de la premiere bascule, sans jamais laisser de trace exploitable.
+            // Chaque etape est donc journalisee et videe sur le disque separement : la derniere
+            // ligne presente dans le fichier designera l'instruction qui bloque.
+            var cible = !module.IsEnabled;
+            CrashWatchdog.Write($"bascule A/B : debut, {module.Id} -> {(cible ? "on" : "off")}, " +
+                                $"acteurs {ActorCounter.FixedUpdateActors}");
+
+            SROptimizerMod.Instance.SetModuleEnabled(module.Id, cible);
+            CrashWatchdog.Write("bascule A/B : etat du module change");
+
             AnnouncePhase();
+            CrashWatchdog.Write("bascule A/B : terminee");
         }
 
         private void AnnouncePhase()
