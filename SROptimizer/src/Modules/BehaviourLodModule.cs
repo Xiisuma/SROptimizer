@@ -29,10 +29,8 @@ namespace SROptimizer.Modules
         public override string Description =>
             "Espace la simulation des slimes distants ou hors champ.";
 
-        protected override void OnEnable(Harmony harmony)
+        protected override void InstallPatches(Harmony harmony)
         {
-            LodGate.Reset();
-
             // Patch explicite plutot que PatchAll : la surcharge PatchAll(Type) n'existe pas
             // dans le Harmony fourni par SRML, et nommer la methode ciblee ici rend le point
             // d'accroche du module visible d'un coup d'oeil.
@@ -47,11 +45,17 @@ namespace SROptimizer.Modules
                 AccessTools.Method(typeof(PlexerPatch), nameof(PlexerPatch.Prefix))));
         }
 
-        protected override void OnDisable(Harmony harmony)
+        protected override void OnActivated()
         {
-            // Les patchs sont retires par la classe de base. Remettre les compteurs a zero
-            // evite d'afficher des statistiques figees d'une activation precedente.
             LodGate.Reset();
+            LodGate.Active = true;
+        }
+
+        protected override void OnDeactivated()
+        {
+            // Le patch reste pose : c'est ce booleen qui le neutralise. Le desinstaller a chaud
+            // faisait planter le jeu en natif, voir la remarque de OptimizerModuleBase.
+            LodGate.Active = false;
         }
 
         public override string GetStatusLine()
@@ -99,6 +103,12 @@ namespace SROptimizer.Modules
         private static bool _hasCamera;
         private static Camera _camera;
 
+        /// <summary>
+        /// Etat du module. Le patch n'etant jamais retire, c'est ce drapeau qui decide si la
+        /// logique de LOD s'applique ou si le comportement d'origine passe intact.
+        /// </summary>
+        public static bool Active;
+
         private static long _considered;
         private static long _skipped;
         private static bool _failed;
@@ -125,7 +135,8 @@ namespace SROptimizer.Modules
         /// </summary>
         public static bool ShouldRun(SlimeSubbehaviourPlexer plexer)
         {
-            if (_failed || plexer == null) return true;
+            // Module inactif : le patch reste pose mais se comporte comme le jeu d'origine.
+            if (!Active || _failed || plexer == null) return true;
 
             try
             {
