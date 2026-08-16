@@ -189,3 +189,51 @@ Aucun module n'est marqué terminé sans :
 - [ ] Étape 8 — Module E (autosave)
 - [ ] Étape 9 — Modules F et G (rendu, physique)
 - [ ] Étape 10 — passe de compatibilité mods + validation finale
+
+---
+
+## Point de reprise — 16 août 2026, pause
+
+### État
+
+PR #1 fusionnée. PR #2 ouverte : https://github.com/Xiisuma/SROptimizer/pull/2
+Arbre de travail propre, tout est poussé. Build sans erreur ni avertissement.
+
+Les 5 autres mods (AssetsLib, ExtraVacSlot, MoreVaccing, ShowUnfedGordos, SlimeCollection) ont
+été retirés de `SRML/Mods` pendant l'enquête sur les plantages. **Ils n'y ont pas été remis.**
+À décider : les remettre, ou continuer sans eux pour garder les mesures propres.
+
+### Config du jeu, prête pour la manche suivante
+
+`SRML/Config/sroptimizer/SROptimizer.ini` :
+
+| Réglage | Valeur |
+|---|---|
+| `profile` | `custom` |
+| `behaviourLod` | True |
+| `abEnabled` | True |
+| `abIntervalSeconds` | 30 |
+| `warmupSeconds` | 20 |
+| `unlockFrameRate` | **True** ← seule différence avec la dernière manche |
+
+### Prochaine action, une seule
+
+Lancer le jeu, charger `NewWorld`, jouer 5 min dans une zone chargée en restant dans le coin,
+quitter. Cela termine le dossier module A : sans plafond de fréquence, le frametime moyen
+redevient une mesure de charge réelle.
+
+Analyser ensuite avec un test de permutation, pas un simple écart de médianes.
+
+### Après cela — proposition à valider
+
+Mettre le plan initial de côté et instrumenter les **gels multi-secondes**. Justification dans
+`tasks/module_a_resultats.md` : ils valent 5 secondes, les modules valent quelques millisecondes.
+Le plan initial ne les avait pas identifiés parce qu'il a été écrit avant la mesure de référence.
+
+Deux pistes déjà réduites : ni la charge de simulation (un gel à 7 acteurs), ni la mémoire
+(plateau stable). Restent le chargement de région SECTR et le cycle de GC majeur.
+
+### Réglages détournés pour le diagnostic, à surveiller
+
+Aucun en attente. `unlockFrameRate` a été remis à True après avoir été oublié à False, ce qui
+avait invalidé la mesure du module A.
